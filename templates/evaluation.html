@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Dataset & Evaluation — SiteGuardVision{% endblock %}
+{% block page_label %}Dataset & Evaluation{% endblock %}
+{% block topbar_eyebrow %}Measured model performance{% endblock %}
+{% block content %}
+<header class="page-head"><div><p class="eyebrow">Actual JSON evaluation artifacts</p><h2 class="page-title">Dataset &amp; Evaluation</h2><p class="page-subtitle">Metrics below are loaded from stored reports. Custom application results are kept separate from detector metrics.</p></div></header>
+<div class="alert alert-warning evaluation-warning" role="note">{{ icon('info') }}<p><strong>Evaluation provenance:</strong> available reports use custom matching and application-level agreement. No official Ultralytics <code>val</code> artifact is stored in this project.</p></div>
+
+{% if evaluation.ppe %}
+{% set ppe = evaluation.ppe %}
+{% set macro = ppe.overall_macro_metrics_ppe_only or ppe.overall_macro_metrics or {} %}
+<section class="card evaluation-section"><div class="card-head"><div><span class="card-kicker">{{ icon('cpu') }} PPE detector · custom evaluation</span><h3 class="card-title">PPE Model Metrics</h3></div><span class="chip chip-purple">{{ ppe.images_evaluated }} images</span></div>
+  <p class="muted small">{{ ppe.metric_type }}</p>
+  <div class="metric-strip">
+    <div><span>Precision (macro, PPE classes)</span><strong>{{ '%.3f'|format(macro.precision|float) }}</strong></div>
+    <div><span>Recall (macro, PPE classes)</span><strong>{{ '%.3f'|format(macro.recall|float) }}</strong></div>
+    <div><span>mAP50</span><strong>{{ '%.3f'|format(macro.mAP50|float) }}</strong></div>
+    <div><span>mAP50–95</span><strong>{{ '%.3f'|format(macro.mAP50_95|float) }}</strong></div>
+  </div>
+  <div class="table-scroll"><table class="table evaluation-table"><thead><tr><th>Class</th><th>Ground truth</th><th>Precision</th><th>Recall</th><th>mAP50</th><th>mAP50–95</th></tr></thead><tbody>{% for row in evaluation.class_rows %}<tr><th>{{ row.name|replace('-', ' ')|title }}</th><td>{{ row.ground_truth }}</td><td>{{ '%.3f'|format(row.precision|float) }}</td><td>{{ '%.3f'|format(row.recall|float) }}</td><td>{{ '%.3f'|format(row.map50|float) }}</td><td>{{ '%.3f'|format(row.map50_95|float) }}</td></tr>{% endfor %}</tbody></table></div>
+  <p class="hint">A separate all-class macro score, including the PPE checkpoint's Person class, is available in the JSON report; the PPE-only macro is shown above for PPE performance.</p>
+</section>
+{% else %}<section class="card empty-state"><p>PPE evaluation report is not available.</p></section>{% endif %}
+
+<div class="evaluation-two">
+{% if evaluation.person %}
+{% set person = evaluation.person %}
+<section class="card evaluation-section"><div class="card-head"><div><span class="card-kicker">{{ icon('workers') }} Person detector · custom evaluation</span><h3 class="card-title">YOLOv8n Person Metrics</h3></div></div><p class="muted small">{{ person.metric_type }}</p>
+  <div class="metric-strip metric-strip-2"><div><span>Precision</span><strong>{{ '%.3f'|format(person.precision|float) }}</strong></div><div><span>Recall</span><strong>{{ '%.3f'|format(person.recall|float) }}</strong></div><div><span>AP50</span><strong>{{ '%.3f'|format(person.AP50|float) }}</strong></div><div><span>AP50–95</span><strong>{{ '%.3f'|format(person.AP50_95|float) }}</strong></div></div>
+  <dl class="simple-meta"><div><dt>Images evaluated</dt><dd>{{ person.images_evaluated }}</dd></div><div><dt>Person ground truth</dt><dd>{{ person.total_ground_truth_persons }}</dd></div><div><dt>Mean inference</dt><dd>{{ '%.1f'|format(person.inference_ms_mean|float) }} ms</dd></div><div><dt>Report threshold</dt><dd>{{ person.confidence_threshold_for_precision_recall }}</dd></div></dl>
+</section>
+{% endif %}
+{% if evaluation.application %}
+{% set app_eval = evaluation.application %}
+{% set app_metrics = app_eval.annotated_violation_detection or {} %}
+{% set timing = app_eval.timing_ms or {} %}
+<section class="card evaluation-section"><div class="card-head"><div><span class="card-kicker">{{ icon('analysis') }} Full pipeline · custom evaluation</span><h3 class="card-title">Application Agreement</h3></div><span class="chip chip-muted">{{ app_eval.image_size }} px</span></div><p class="muted small">{{ app_eval.metric_type }}</p>
+  <div class="metric-strip metric-strip-2"><div><span>Violation precision</span><strong>{{ '%.3f'|format(app_metrics.precision|float) }}</strong></div><div><span>Violation recall</span><strong>{{ '%.3f'|format(app_metrics.recall|float) }}</strong></div><div><span>F1</span><strong>{{ '%.3f'|format(app_metrics.f1|float) }}</strong></div><div><span>Accuracy</span><strong>{{ '%.3f'|format(app_metrics.accuracy|float) }}</strong></div></div>
+  <dl class="simple-meta"><div><dt>Images evaluated</dt><dd>{{ app_eval.images_evaluated }}</dd></div><div><dt>Potential violation</dt><dd>{{ app_eval.status_counts.potential_violation or 0 }}</dd></div><div><dt>Insufficient evidence</dt><dd>{{ app_eval.status_counts.insufficient_evidence or 0 }}</dd></div><div><dt>No violation detected</dt><dd>{{ app_eval.status_counts.no_violation_detected or 0 }}</dd></div><div><dt>Mean total time</dt><dd>{{ '%.0f'|format(timing.mean_total|float) }} ms</dd></div><div><dt>Mean model inference</dt><dd>{{ '%.0f'|format(timing.mean_model_inference|float) }} ms</dd></div></dl>
+  <p class="hint">{{ app_eval.label_semantics }}</p>
+</section>
+{% endif %}
+</div>
+<p class="decision-note">{{ icon('info') }} These are dataset-specific custom metrics, not a guarantee of field performance. See the underlying JSON reports and evaluation scripts for methodology.</p>
+{% endblock %}

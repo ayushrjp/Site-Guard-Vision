@@ -1,0 +1,11 @@
+flask==3.0.3
+ultralytics==8.3.40
+pillow==10.4.0
+chromadb==1.5.9
+pypdf==5.9.0
+requests==2.34.2
+# ByteTrack association depends on the compiled LAP solver.
+lapx==0.13.1
+# Production WSGI server (Render). Gunicorn is POSIX-only; Windows developers
+# keep using the Flask development server.
+gunicorn==23.0.0

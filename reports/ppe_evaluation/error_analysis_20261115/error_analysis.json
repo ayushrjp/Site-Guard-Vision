@@ -1,0 +1,234 @@
+{
+  "source_baseline": "reports/ppe_evaluation/run_20261115",
+  "model_sha256": "2b33d4d016f9751c5a25f4a72ce050e0a7e4e140b11c1669978d7154003a4f61",
+  "images_evaluated": 90,
+  "threshold": 0.25,
+  "diagnostic_candidate_floor": 0.001,
+  "imgsz": 960,
+  "nms_iou": 0.7,
+  "match_iou": 0.5,
+  "mean_wall_ms_per_image": 4268.503116653301,
+  "classes": {
+    "Helmet": {
+      "ground_truth": 195,
+      "predictions_at_floor": 646,
+      "accepted_at_025": 215,
+      "correct_accepted": 151,
+      "incorrect_accepted": 64,
+      "false_negatives_at_025": 44,
+      "precision_at_025": 0.7023255813953488,
+      "recall_at_025": 0.7743589743589744,
+      "below_threshold_predictions": 431,
+      "below_threshold_candidates_iou50": 132,
+      "correct_confidence_mean": 0.47091727422562657,
+      "correct_confidence_median": 0.41383257508277893,
+      "incorrect_confidence_mean": 0.47078030463308096,
+      "incorrect_confidence_median": 0.44771718978881836,
+      "below_threshold_confidence_mean": 0.049162793041286845,
+      "fn_categories": {
+        "rejected_below_0.25": 41,
+        "poor_iou_localization": 3
+      }
+    },
+    "No Helmet": {
+      "ground_truth": 24,
+      "predictions_at_floor": 100,
+      "accepted_at_025": 18,
+      "correct_accepted": 14,
+      "incorrect_accepted": 4,
+      "false_negatives_at_025": 10,
+      "precision_at_025": 0.7777777777777778,
+      "recall_at_025": 0.5833333333333334,
+      "below_threshold_predictions": 82,
+      "below_threshold_candidates_iou50": 23,
+      "correct_confidence_mean": 0.5818447981561933,
+      "correct_confidence_median": 0.5872868895530701,
+      "incorrect_confidence_mean": 0.34165026992559433,
+      "incorrect_confidence_median": 0.3450755327939987,
+      "below_threshold_confidence_mean": 0.034554075233910866,
+      "fn_categories": {
+        "incorrect_class_prediction": 1,
+        "rejected_below_0.25": 8,
+        "no_same_class_candidate": 1
+      }
+    },
+    "No Vest": {
+      "ground_truth": 61,
+      "predictions_at_floor": 166,
+      "accepted_at_025": 26,
+      "correct_accepted": 21,
+      "incorrect_accepted": 5,
+      "false_negatives_at_025": 40,
+      "precision_at_025": 0.8076923076923077,
+      "recall_at_025": 0.3442622950819672,
+      "below_threshold_predictions": 140,
+      "below_threshold_candidates_iou50": 40,
+      "correct_confidence_mean": 0.36636745787802194,
+      "correct_confidence_median": 0.3705454170703888,
+      "incorrect_confidence_mean": 0.3573959231376648,
+      "incorrect_confidence_median": 0.35023340582847595,
+      "below_threshold_confidence_mean": 0.042495749348641504,
+      "fn_categories": {
+        "rejected_below_0.25": 33,
+        "accepted_same_class_candidate_no_overlap": 2,
+        "below_threshold_same_class_candidate_no_overlap": 4,
+        "no_same_class_candidate": 1
+      }
+    },
+    "Person": {
+      "ground_truth": 214,
+      "predictions_at_floor": 5,
+      "accepted_at_025": 0,
+      "correct_accepted": 0,
+      "incorrect_accepted": 0,
+      "false_negatives_at_025": 214,
+      "precision_at_025": 0,
+      "recall_at_025": 0.0,
+      "below_threshold_predictions": 5,
+      "below_threshold_candidates_iou50": 0,
+      "correct_confidence_mean": null,
+      "correct_confidence_median": null,
+      "incorrect_confidence_mean": null,
+      "incorrect_confidence_median": null,
+      "below_threshold_confidence_mean": 0.0029866653261706234,
+      "fn_categories": {
+        "no_same_class_candidate": 209,
+        "incorrect_class_prediction": 3,
+        "below_threshold_same_class_candidate_no_overlap": 2
+      }
+    },
+    "Safety Vest": {
+      "ground_truth": 129,
+      "predictions_at_floor": 206,
+      "accepted_at_025": 80,
+      "correct_accepted": 72,
+      "incorrect_accepted": 8,
+      "false_negatives_at_025": 57,
+      "precision_at_025": 0.9,
+      "recall_at_025": 0.5581395348837209,
+      "below_threshold_predictions": 126,
+      "below_threshold_candidates_iou50": 63,
+      "correct_confidence_mean": 0.388382404214806,
+      "correct_confidence_median": 0.37414591014385223,
+      "incorrect_confidence_mean": 0.3464711792767048,
+      "incorrect_confidence_median": 0.34931202232837677,
+      "below_threshold_confidence_mean": 0.06894711827460144,
+      "fn_categories": {
+        "rejected_below_0.25": 50,
+        "no_same_class_candidate": 3,
+        "poor_iou_localization": 2,
+        "below_threshold_same_class_candidate_no_overlap": 2
+      }
+    }
+  },
+  "fn_count_by_class": {
+    "No Vest": 40,
+    "Person": 214,
+    "Safety Vest": 57,
+    "No Helmet": 10,
+    "Helmet": 44
+  },
+  "fn_category_counts": {
+    "rejected_below_0.25": 132,
+    "no_same_class_candidate": 214,
+    "incorrect_class_prediction": 4,
+    "poor_iou_localization": 5,
+    "below_threshold_same_class_candidate_no_overlap": 8,
+    "accepted_same_class_candidate_no_overlap": 2
+  },
+  "false_negative_count_ppe_classes": 151,
+  "false_negative_count_ppe_checkpoint_person": 214,
+  "confidence_limits": "Boxes below 0.001 are not emitted by Ultralytics and therefore absent from candidate records.",
+  "interpretation_limit": "Image labels are annotation references, not production detections or ground truth of site compliance.",
+  "dataset_quality": {
+    "splits": {
+      "train": {
+        "images": 997,
+        "instances": 6386,
+        "class_counts": {
+          "Helmet": 2116,
+          "No Helmet": 94,
+          "No Vest": 741,
+          "Person": 2362,
+          "Safety Vest": 1073
+        },
+        "image_resolutions": {
+          "640x640": 997
+        },
+        "image_width_min_median_max": [
+          640,
+          640,
+          640
+        ],
+        "image_height_min_median_max": [
+          640,
+          640,
+          640
+        ],
+        "box_size_categories_equiv_640": {
+          "medium": 2135,
+          "large": 3870,
+          "small": 381
+        }
+      },
+      "valid": {
+        "images": 119,
+        "instances": 715,
+        "class_counts": {
+          "Helmet": 232,
+          "No Helmet": 11,
+          "No Vest": 90,
+          "Person": 241,
+          "Safety Vest": 141
+        },
+        "image_resolutions": {
+          "640x640": 119
+        },
+        "image_width_min_median_max": [
+          640,
+          640,
+          640
+        ],
+        "image_height_min_median_max": [
+          640,
+          640,
+          640
+        ],
+        "box_size_categories_equiv_640": {
+          "large": 477,
+          "medium": 200,
+          "small": 38
+        }
+      },
+      "test": {
+        "images": 90,
+        "instances": 623,
+        "class_counts": {
+          "Helmet": 195,
+          "No Helmet": 24,
+          "No Vest": 61,
+          "Person": 214,
+          "Safety Vest": 129
+        },
+        "image_resolutions": {
+          "640x640": 90
+        },
+        "image_width_min_median_max": [
+          640,
+          640,
+          640
+        ],
+        "image_height_min_median_max": [
+          640,
+          640,
+          640
+        ],
+        "box_size_categories_equiv_640": {
+          "medium": 205,
+          "large": 395,
+          "small": 23
+        }
+      }
+    }
+  }
+}

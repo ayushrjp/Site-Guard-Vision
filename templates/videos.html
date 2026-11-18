@@ -1,0 +1,275 @@
+{% extends "layout.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Video Analysis — SiteGuardVision{% endblock %}
+{% block page_label %}Video Analysis{% endblock %}
+{% block topbar_eyebrow %}Temporal PPE compliance workspace{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <div>
+    <p class="eyebrow">Computer vision · Video screening</p>
+    <h2 class="page-title">Video Analysis</h2>
+    <p class="page-subtitle">Track workers across sampled frames, associate PPE evidence, and emit timestamped safety events only when negative detections persist.</p>
+  </div>
+  <div class="page-actions">
+    <a class="btn btn-ghost" href="#sample-library">{{ icon('video') }}<span>Sample Library</span></a>
+    <button class="btn btn-primary" type="button" data-open-video-file>{{ icon('upload') }}<span>Upload Video</span></button>
+  </div>
+</header>
+
+<div class="alert alert-error" role="alert" data-video-error hidden>
+  {{ icon('alert') }}<p data-video-error-text></p>
+</div>
+
+<section class="hero-strip">
+  <div class="hero-copy">
+    <span class="hero-kicker">{{ icon('shield') }} On-demand video review</span>
+    <h3>One video at a time, honest evidence only.</h3>
+    <p>Frames are sampled at a configurable rate and resolution, so 4K footage is never processed frame by frame. Worker IDs come from ByteTrack; hard hats, vests, gloves, goggles, and masks are associated geometrically.</p>
+  </div>
+  <ul class="hero-points">
+    <li><span class="point-dot point-green"></span>Compliant · Potential Violation · Unconfirmed</li>
+    <li><span class="point-dot point-purple"></span>Temporal verification with observation thresholds</li>
+    <li><span class="point-dot point-amber"></span>No alert from missing positive evidence alone</li>
+  </ul>
+</section>
+
+<div class="home-grid video-source-grid">
+  <section class="card upload-card" id="upload" aria-labelledby="video-upload-title">
+    <div class="card-head">
+      <div>
+        <span class="card-kicker">{{ icon('upload') }} Upload</span>
+        <h3 id="video-upload-title" class="card-title">Analyze your own video</h3>
+      </div>
+      <span class="chip chip-muted">MP4 · AVI · MOV · MKV · WEBM</span>
+    </div>
+
+    <form class="form" data-video-upload-form novalidate>
+      <div class="field">
+        <input class="visually-hidden file-input" type="file" id="video-file" name="video" accept=".mp4,.avi,.mov,.mkv,.webm,.m4v,video/*" />
+        <label class="dropzone video-dropzone" for="video-file" data-video-dropzone>
+          <span class="dropzone-icon">{{ icon('video') }}</span>
+          <span class="drop-title">Drop a video here or choose a file</span>
+          <span class="drop-hint">Up to {{ max_video_mb }} MB · validated before analysis</span>
+          <span class="drop-action">Browse videos</span>
+        </label>
+        <div class="file-preview" data-video-file-preview hidden>
+          <span class="recent-thumb video-file-thumb">{{ icon('video') }}</span>
+          <p class="file-name" data-video-file-name></p>
+        </div>
+      </div>
+
+      <div class="video-upload-progress" data-upload-progress hidden>
+        <div class="progress-track"><div class="progress-fill" data-upload-progress-fill></div></div>
+        <p class="hint" data-upload-progress-text>Uploading…</p>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" data-upload-submit>
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="btn-label">{{ icon('upload') }} Upload and validate</span>
+      </button>
+      <p class="hint model-note">Uploads are stored under a random ID outside <code>static/</code> and served only through validated routes. Corrupt or unsupported files are rejected.</p>
+    </form>
+  </section>
+
+  <section class="card samples-card video-samples-card" id="sample-library" aria-labelledby="video-samples-title">
+    <div class="card-head">
+      <div>
+        <span class="card-kicker">{{ icon('video') }} Bundled footage</span>
+        <h3 id="video-samples-title" class="card-title">Sample videos</h3>
+      </div>
+      {% if samples %}<span class="chip chip-muted">{{ samples|length }} videos</span>{% endif %}
+    </div>
+
+    {% if samples %}
+      <ul class="video-sample-list" data-sample-list>
+        {% for s in samples %}
+          <li>
+            <button type="button" class="video-sample" data-sample
+              data-sample-id="{{ s.id }}"
+              data-sample-name="{{ s.filename }}"
+              data-sample-stream="{{ s.stream_url }}"
+              data-sample-width="{{ s.width }}"
+              data-sample-height="{{ s.height }}"
+              data-sample-fps="{{ s.fps }}"
+              data-sample-duration="{{ s.duration_s }}"
+              aria-label="Select sample video {{ s.filename }}">
+              <span class="video-sample-thumb">
+                <img src="{{ s.thumbnail_url }}" alt="" loading="lazy" decoding="async" />
+                <span class="video-sample-play">{{ icon('play') }}</span>
+              </span>
+              <span class="video-sample-copy">
+                <span class="video-sample-name" title="{{ s.filename }}">{{ s.filename }}</span>
+                <span class="video-sample-meta">{{ s.width }}×{{ s.height }} · {{ '%.0f'|format(s.fps) }} fps · {{ '%d:%02d'|format((s.duration_s // 60)|int, (s.duration_s % 60)|int) }}</span>
+                <span class="chip video-category-{{ s.category_kind }}">{{ s.category }}</span>
+              </span>
+            </button>
+          </li>
+        {% endfor %}
+      </ul>
+      <p class="hint sample-hint">Categories come from the existing sampled-frame detection report, not from filenames.</p>
+    {% else %}
+      <div class="empty-state">
+        {{ icon('video') }}
+        <p>No sample videos were discovered.</p>
+        <p class="muted small">Add MP4/AVI/MOV files to the <code>test_videos/</code> folder.</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
+<section class="card video-setup-card" aria-labelledby="video-setup-title">
+  <div class="card-head">
+    <div>
+      <span class="card-kicker">{{ icon('analysis') }} Analysis setup</span>
+      <h3 id="video-setup-title" class="card-title">Selected video</h3>
+    </div>
+    <span class="chip chip-muted" data-selected-chip hidden>Nothing selected</span>
+  </div>
+
+  <div class="video-setup-grid">
+    <div class="video-preview-panel">
+      <div class="video-preview-frame" data-video-preview-frame>
+        <div class="video-preview-empty" data-video-preview-empty>
+          {{ icon('video') }}
+          <p>Select a sample or upload a video to preview it here.</p>
+        </div>
+        <video class="video-preview-player" data-video-preview controls playsinline preload="metadata" hidden></video>
+      </div>
+      <dl class="video-preview-meta" data-video-preview-meta hidden>
+        <div><dt>{{ icon('video') }} Source</dt><dd data-meta-name>—</dd></div>
+        <div><dt>{{ icon('image') }} Resolution</dt><dd data-meta-resolution>—</dd></div>
+        <div><dt>{{ icon('clock') }} Duration</dt><dd data-meta-duration>—</dd></div>
+        <div><dt>{{ icon('cpu') }} Frame rate</dt><dd data-meta-fps>—</dd></div>
+      </dl>
+    </div>
+
+    <div class="video-settings-panel">
+      <div class="selected-source-note">
+        <strong data-selected-title>No video selected</strong>
+        <p class="hint" data-selected-hint>Pick a sample on the right or upload a file. Analysis stays disabled until a validated video is ready.</p>
+      </div>
+
+      <div class="control-grid video-control-grid">
+        <div class="field">
+          <div class="field-head">
+            <label class="label" for="sample-fps">Sampling rate</label>
+            <output class="value-pill" id="sample-fps-value">2 fps</output>
+          </div>
+          <input type="range" id="sample-fps" min="0.5" max="6" step="0.5" value="{{ video_defaults.sample_fps }}" data-setting="sample_fps" />
+          <p class="hint">Frames analyzed per second of footage. Higher is slower and more detailed.</p>
+        </div>
+
+        <div class="field">
+          <div class="field-head">
+            <label class="label" for="max-frames">Frame budget</label>
+            <output class="value-pill" id="max-frames-value">{{ video_defaults.max_sampled_frames }}</output>
+          </div>
+          <input type="range" id="max-frames" min="20" max="600" step="10" value="{{ video_defaults.max_sampled_frames }}" data-setting="max_sampled_frames" />
+          <p class="hint">Hard cap on sampled frames per job; protects CPU time.</p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="video-imgsz">Inference resolution</label>
+          <select id="video-imgsz" data-setting="imgsz">
+            <option value="640" {{ 'selected' if video_defaults.imgsz == 640 }}>Fast · 640 px</option>
+            <option value="960" {{ 'selected' if video_defaults.imgsz == 960 }}>Balanced · 960 px</option>
+            <option value="1280" {{ 'selected' if video_defaults.imgsz == 1280 }}>Detailed · 1280 px</option>
+          </select>
+          <p class="hint">Inference size, not output size. Aspect ratio is preserved.</p>
+        </div>
+
+        <div class="field">
+          <div class="field-head">
+            <label class="label" for="video-conf">PPE confidence</label>
+            <output class="value-pill" id="video-conf-value">{{ '%.2f'|format(video_defaults.conf) }}</output>
+          </div>
+          <input type="range" id="video-conf" min="0.05" max="0.95" step="0.05" value="{{ video_defaults.conf }}" data-setting="conf" />
+          <p class="hint">Applies to PPE detections; workers keep their own detector floor.</p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="min-observations">Verification observations</label>
+          <input type="number" id="min-observations" min="2" max="30" step="1" value="{{ video_defaults.min_observations }}" data-setting="min_observations" />
+          <p class="hint">Explicit negative frames required before an event is emitted.</p>
+        </div>
+
+        <div class="field">
+          <div class="field-head">
+            <label class="label" for="min-ratio">Evidence proportion</label>
+            <output class="value-pill" id="min-ratio-value">{{ '%.0f'|format(video_defaults.min_ratio * 100) }}%</output>
+          </div>
+          <input type="range" id="min-ratio" min="0.2" max="1" step="0.05" value="{{ video_defaults.min_ratio }}" data-setting="min_ratio" />
+          <p class="hint">Share of the surrounding window that must support the negative observation.</p>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-block" data-analyze-video disabled>
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="btn-label">{{ icon('analysis') }} Start video analysis</span>
+      </button>
+      <p class="hint video-queue-note">Jobs run one at a time in a background worker. You can leave this page; progress is stored in SQLite.</p>
+
+      <div class="video-job-progress" data-job-progress hidden aria-live="polite">
+        <div class="progress-track"><div class="progress-fill" data-job-progress-fill></div></div>
+        <p class="hint" data-job-progress-text>Queued…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="card video-jobs-card" aria-labelledby="video-jobs-title">
+  <div class="card-head">
+    <div>
+      <span class="card-kicker">{{ icon('clock') }} Recent work</span>
+      <h3 id="video-jobs-title" class="card-title">Video jobs</h3>
+    </div>
+    <a class="text-link" href="{{ url_for('videos_page') }}">{{ icon('refresh') }} Refresh</a>
+  </div>
+
+  {% if jobs %}
+    <div class="table-scroll">
+      <table class="table video-jobs-table">
+        <caption class="visually-hidden">Recent video analysis jobs</caption>
+        <thead>
+          <tr>
+            <th scope="col">Video</th>
+            <th scope="col">Source</th>
+            <th scope="col">Status</th>
+            <th scope="col" class="num">Workers</th>
+            <th scope="col" class="num">Events</th>
+            <th scope="col">Created</th>
+            <th scope="col"><span class="visually-hidden">Open</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for job in jobs %}
+            <tr>
+              <th scope="row"><span class="video-job-name" title="{{ job.original_filename }}">{{ job.original_filename }}</span></th>
+              <td><span class="chip chip-muted">{{ 'Sample' if job.source_type == 'sample' else 'Upload' }}</span></td>
+              <td>
+                {% if job.status == 'completed' %}<span class="badge badge-ok">Completed</span>
+                {% elif job.status == 'failed' %}<span class="badge badge-alert">Failed</span>
+                {% elif job.status == 'running' %}<span class="badge badge-info">Running {{ '%.0f'|format(job.progress) }}%</span>
+                {% else %}<span class="badge badge-unknown">Queued</span>{% endif %}
+              </td>
+              <td class="num">{{ job.worker_count or '—' }}</td>
+              <td class="num">{{ job.event_count or '—' }}</td>
+              <td><span class="confidence-cell">{{ job.created_at|datetime_short }}</span></td>
+              <td><a class="text-link" href="{{ url_for('video_result_page', job_id=job.id) }}">Open {{ icon('external') }}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty-state compact">
+      {{ icon('video') }}
+      <p>No video analysis jobs yet.</p>
+      <p class="muted small">Select a sample or upload a video to create the first job.</p>
+    </div>
+  {% endif %}
+</section>
+
+<p class="decision-note">{{ icon('info') }} Video events describe explicit negative PPE evidence accumulated over sampled frames. Unconfirmed never means compliant, and a clean run is not a compliance certificate.</p>
+{% endblock %}

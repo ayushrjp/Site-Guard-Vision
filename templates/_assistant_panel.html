@@ -1,0 +1,39 @@
+{% from "_icons.html" import icon %}
+<aside class="assistant-panel" data-assistant
+  data-analysis-id="{{ analysis_id if analysis_id else latest_analysis_id if latest_analysis_id else '' }}"
+  aria-label="Safety Assistant">
+  <header class="assistant-head">
+    <span class="assistant-avatar">{{ icon('assistant') }}</span>
+    <div class="assistant-heading">
+      <h2>Safety Assistant <span>(Qwen2.5 3B)</span></h2>
+      <p>Ask safety, PPE, or site compliance questions</p>
+    </div>
+    <button class="icon-btn assistant-clear" type="button" data-chat-clear aria-label="Clear conversation" title="Clear conversation">{{ icon('trash') }}</button>
+  </header>
+  <div class="assistant-status" data-assistant-status data-mode="checking">
+    <span class="status-dot"></span><span data-assistant-status-text>Checking Ollama…</span>
+    <a href="{{ url_for('settings_page') }}">Configure</a>
+  </div>
+  <div class="chat-history" data-chat-history role="log" aria-live="polite" aria-relevant="additions text">
+    <div class="chat-welcome" data-chat-welcome>
+      <span class="welcome-icon">{{ icon('spark') }}</span>
+      <strong>How can I help?</strong>
+      <p>I answer from general safety knowledge and can explain the current image analysis. Documents are optional.</p>
+    </div>
+  </div>
+  <div class="suggested-prompts" data-suggested-prompts>
+    <button type="button" data-prompt="What PPE is required on a construction site?">What PPE is required on site? {{ icon('arrow-left') }}</button>
+    <button type="button" data-prompt="Why is a safety helmet important?">Why is a safety helmet important? {{ icon('arrow-left') }}</button>
+    {% if analysis_id or latest_analysis_id or request.endpoint == 'analyze' %}
+    <button type="button" data-prompt="Explain the current worker assessment.">Explain this worker assessment {{ icon('arrow-left') }}</button>
+    {% else %}
+    <button type="button" data-prompt="How does PPE detection work?">How does PPE detection work? {{ icon('arrow-left') }}</button>
+    {% endif %}
+  </div>
+  <form class="chat-composer" data-chat-form>
+    <label class="visually-hidden" for="assistant-question">Ask a safety question</label>
+    <textarea id="assistant-question" name="message" rows="1" maxlength="2000" placeholder="Ask a question…" data-chat-input required></textarea>
+    <button class="send-button" type="submit" data-chat-send aria-label="Send question">{{ icon('send') }}</button>
+  </form>
+  <p class="assistant-footnote">General guidance from Qwen2.5 3B · Documents optional · Verify against your site policy</p>
+</aside>

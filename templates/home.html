@@ -1,0 +1,190 @@
+{% extends "layout.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Image Analysis — SiteGuardVision{% endblock %}
+{% block page_label %}Image Analysis{% endblock %}
+{% block topbar_eyebrow %}PPE compliance workspace{% endblock %}
+{% block workspace_class %}has-assistant{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <div>
+    <p class="eyebrow">Computer vision · PPE screening</p>
+    <h2 class="page-title">Image Analysis</h2>
+    <p class="page-subtitle">Detect workers, associate hard hats and safety vests, and review a cautious, evidence-based assessment.</p>
+  </div>
+  <div class="page-actions">
+    <a class="btn btn-ghost" href="#upload" data-focus-upload>{{ icon('plus') }}<span>New Analysis</span></a>
+    <button class="btn btn-primary" type="button" data-open-file>{{ icon('upload') }}<span>Upload Image</span></button>
+  </div>
+</header>
+
+{% if error %}
+  <div class="alert alert-error" role="alert">
+    {{ icon('alert') }}
+    <p>{{ error }}</p>
+  </div>
+{% endif %}
+
+<section class="hero-strip">
+  <div class="hero-copy">
+    <span class="hero-kicker">{{ icon('shield') }} Detection support</span>
+    <h3>See who may need a closer look.</h3>
+    <p>Every number below comes from the local YOLO pipeline. The assistant can explain the result and cite your indexed safety documents — it never invents detections.</p>
+  </div>
+  <ul class="hero-points">
+    <li><span class="point-dot point-green"></span>Present / Missing / Unconfirmed evidence</li>
+    <li><span class="point-dot point-purple"></span>Worker-to-PPE geometric association</li>
+    <li><span class="point-dot point-amber"></span>Amber when evidence is insufficient</li>
+  </ul>
+</section>
+
+<div class="home-grid">
+  <section class="card upload-card" id="upload" aria-labelledby="upload-title">
+    <div class="card-head">
+      <div>
+        <span class="card-kicker">{{ icon('upload') }} New analysis</span>
+        <h3 id="upload-title" class="card-title">Analyze a site photo</h3>
+      </div>
+      <span class="chip chip-muted">JPG · PNG · WEBP · BMP</span>
+    </div>
+
+    <form method="post" action="{{ url_for('analyze') }}" enctype="multipart/form-data" class="form" data-analyze-form>
+      <div class="field">
+        <input class="visually-hidden file-input" type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.webp,.bmp" />
+        <label class="dropzone" for="image" data-dropzone>
+          <span class="dropzone-icon">{{ icon('image') }}</span>
+          <span class="drop-title">Drop a photo here or choose a file</span>
+          <span class="drop-hint">Up to 15 MB · the original upload is deleted after analysis</span>
+          <span class="drop-action">Browse photos</span>
+        </label>
+        <div class="file-preview" data-preview-wrap hidden>
+          <img class="preview" data-preview alt="Selected photo preview" />
+          <p class="file-name" data-file-name></p>
+        </div>
+      </div>
+
+      <div class="control-grid">
+        <div class="field">
+          <div class="field-head">
+            <label class="label" for="conf">PPE confidence</label>
+            <output class="value-pill" for="conf" id="conf-value">{{ '%.2f' % (settings.conf|float) }}</output>
+          </div>
+          <input type="range" id="conf" name="conf" min="0.05" max="0.95" step="0.05" value="{{ '%.2f' % (settings.conf|float) }}" aria-describedby="conf-hint" />
+          <p class="hint" id="conf-hint">Higher values keep only more certain detections. Default is saved in Settings.</p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="imgsz">Image detail</label>
+          <select id="imgsz" name="imgsz" aria-describedby="imgsz-hint">
+            <option value="640" {{ 'selected' if settings.imgsz == '640' }}>Fast · 640 px</option>
+            <option value="960" {{ 'selected' if settings.imgsz == '960' }}>Balanced · 960 px</option>
+            <option value="1280" {{ 'selected' if settings.imgsz == '1280' }}>Detailed · 1280 px</option>
+          </select>
+          <p class="hint" id="imgsz-hint">More detail finds smaller gear and takes longer on CPU.</p>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" data-submit>
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="btn-label">{{ icon('analysis') }} Analyze photo</span>
+      </button>
+      <p class="status" data-status role="status" hidden>Analyzing the photo. This can take a few seconds on CPU.</p>
+      <p class="hint model-note">People are counted with the dedicated YOLOv8n detector. Hard hats and vests come from <code>yolo_ppe_core.pt</code>. No video or camera access.</p>
+    </form>
+  </section>
+
+  <section class="card samples-card" id="samples" aria-labelledby="samples-title">
+    <div class="card-head">
+      <div>
+        <span class="card-kicker">{{ icon('image') }} Bundled examples</span>
+        <h3 id="samples-title" class="card-title">Start with a sample</h3>
+      </div>
+      {% if samples %}<span class="chip chip-muted">{{ samples|length }} photos</span>{% endif %}
+    </div>
+
+    {% if samples %}
+      <ul class="sample-grid">
+        {% for s in samples[:8] %}
+          <li>
+            <form method="post" action="{{ url_for('analyze') }}">
+              <input type="hidden" name="sample" value="{{ s }}" />
+              <input type="hidden" name="conf" value="{{ settings.conf }}" />
+              <input type="hidden" name="imgsz" value="{{ settings.imgsz }}" />
+              <button type="submit" class="sample" aria-label="Analyze sample photo {{ loop.index }}">
+                <img src="{{ url_for('sample_file', filename=s) }}" alt="" loading="lazy" decoding="async" />
+                <span class="sample-label" aria-hidden="true">Photo {{ loop.index }}</span>
+                <span class="sample-run" aria-hidden="true">{{ icon('analysis') }}</span>
+              </button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if samples|length > 8 %}
+        <details class="more-samples">
+          <summary>Browse all {{ samples|length }} samples</summary>
+          <ul class="sample-grid">
+            {% for s in samples[8:] %}
+              <li>
+                <form method="post" action="{{ url_for('analyze') }}">
+                  <input type="hidden" name="sample" value="{{ s }}" />
+                  <input type="hidden" name="conf" value="{{ settings.conf }}" />
+                  <input type="hidden" name="imgsz" value="{{ settings.imgsz }}" />
+                  <button type="submit" class="sample" aria-label="Analyze sample photo {{ loop.index + 8 }}">
+                    <img src="{{ url_for('sample_file', filename=s) }}" alt="" loading="lazy" decoding="async" />
+                    <span class="sample-label" aria-hidden="true">Photo {{ loop.index + 8 }}</span>
+                    <span class="sample-run" aria-hidden="true">{{ icon('analysis') }}</span>
+                  </button>
+                </form>
+              </li>
+            {% endfor %}
+          </ul>
+        </details>
+      {% endif %}
+      <p class="hint sample-hint">Samples run with your saved confidence and detail defaults.</p>
+    {% else %}
+      <div class="empty-state">
+        {{ icon('image') }}
+        <p>No sample photos are installed.</p>
+        <p class="muted small">Add images to the <code>samples/</code> folder to show them here.</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
+{% if recent %}
+<section class="card recent-card" aria-labelledby="recent-title">
+  <div class="card-head">
+    <div>
+      <span class="card-kicker">{{ icon('clock') }} Latest stored results</span>
+      <h3 id="recent-title" class="card-title">Recent analyses</h3>
+    </div>
+    <a class="text-link" href="{{ url_for('reports_page') }}">Open reports {{ icon('external') }}</a>
+  </div>
+  <div class="recent-list">
+    {% for item in recent %}
+      <a class="recent-row" href="{{ url_for('analysis_detail', analysis_id=item.id) }}">
+        <span class="recent-thumb">
+          {% if item.annotated_rel %}
+            <img src="{{ annotated_url(item.annotated_rel) }}" alt="" loading="lazy" />
+          {% else %}
+            {{ icon('image') }}
+          {% endif %}
+        </span>
+        <span class="recent-copy">
+          <span class="recent-name">{{ item.source_label or 'Analysis #' ~ item.id }}</span>
+          <span class="recent-meta">{{ item.created_at|datetime_short }} · {{ item.person_count }} workers · {{ '%.0f' % (item.inference_ms or 0) }} ms</span>
+        </span>
+        <span class="badge {{ 'badge-alert' if item.assessment_status == 'potential_violation' else 'badge-ok' if item.assessment_status == 'no_violation_detected' else 'badge-unknown' }}">
+          {{ 'Review' if item.assessment_status == 'potential_violation' else 'Clear' if item.assessment_status == 'no_violation_detected' else 'Limited' }}
+        </span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block assistant %}
+{% include "_assistant_panel.html" %}
+{% endblock %}

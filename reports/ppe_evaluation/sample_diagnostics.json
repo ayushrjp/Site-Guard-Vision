@@ -1,0 +1,1398 @@
+{
+  "model_path": "models\\yolo_ppe_core.pt",
+  "model_class_names": {
+    "0": "Fall-Detected",
+    "1": "Gloves",
+    "2": "Goggles",
+    "3": "Hardhat",
+    "4": "Ladder",
+    "5": "Mask",
+    "6": "NO-Gloves",
+    "7": "NO-Goggles",
+    "8": "NO-Hardhat",
+    "9": "NO-Mask",
+    "10": "NO-Safety Vest",
+    "11": "Person",
+    "12": "Safety Cone",
+    "13": "Safety Vest"
+  },
+  "dataset_to_model_class_mapping": {
+    "0": 3,
+    "1": 8,
+    "2": 10,
+    "3": 11,
+    "4": 13
+  },
+  "device": "cpu",
+  "cuda_available": false,
+  "confidence_floor": 0.001,
+  "production_cutoff_for_comparison": 0.25,
+  "imgsz": 960,
+  "nms_iou": 0.7,
+  "iou_match": 0.5,
+  "images": [
+    {
+      "image": "ppe_0000_jpg.rf.10b00122488d1ea4cb54307ca1d66449.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "ground_truth_count": 3,
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "bbox_xyxy": [
+            191.0,
+            120.25,
+            251.0,
+            183.75
+          ]
+        },
+        {
+          "class_id": 2,
+          "class": "No Vest",
+          "bbox_xyxy": [
+            187.0,
+            170.5,
+            263.0,
+            319.5
+          ]
+        },
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            179.25,
+            110.25,
+            264.75,
+            489.75
+          ]
+        }
+      ],
+      "prediction_count": 5,
+      "predictions": [
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.8472670316696167,
+          "bbox_xyxy": [
+            194.453,
+            113.611,
+            244.457,
+            203.815
+          ]
+        },
+        {
+          "class_id": 2,
+          "class": "No Vest",
+          "model_class_id": 10,
+          "model_class": "NO-Safety Vest",
+          "confidence": 0.027396205812692642,
+          "bbox_xyxy": [
+            184.985,
+            181.36,
+            262.236,
+            322.175
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.0024245602544397116,
+          "bbox_xyxy": [
+            350.058,
+            33.111,
+            371.435,
+            67.233
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.001320213545113802,
+          "bbox_xyxy": [
+            635.447,
+            92.564,
+            640.0,
+            158.413
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.0011790565913543105,
+          "bbox_xyxy": [
+            633.59,
+            364.92,
+            640.0,
+            396.518
+          ]
+        }
+      ],
+      "matches_iou50_class_aware_one_to_one": [
+        {
+          "prediction_index": 1,
+          "ground_truth_index": 1,
+          "class": "No Vest",
+          "iou": 0.8801001217840357
+        },
+        {
+          "prediction_index": 0,
+          "ground_truth_index": 0,
+          "class": "Helmet",
+          "iou": 0.6171165517527807
+        }
+      ],
+      "unmatched_prediction_indices": [
+        2,
+        3,
+        4
+      ],
+      "unmatched_ground_truth_indices": [
+        2
+      ],
+      "wall_ms": 17498.64,
+      "inference_ms": 3743.802070617676
+    },
+    {
+      "image": "ppe_0004_jpg.rf.99a751a65b56257ea7c44b4de9cae4bb.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "ground_truth_count": 9,
+      "ground_truth": [
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "bbox_xyxy": [
+            433.0,
+            485.25,
+            638.0,
+            634.75
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "bbox_xyxy": [
+            311.75,
+            163.75,
+            358.25,
+            204.25
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "bbox_xyxy": [
+            54.25,
+            208.0,
+            219.75,
+            323.0
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "bbox_xyxy": [
+            294.25,
+            222.5,
+            384.75,
+            328.5
+          ]
+        },
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            286.75,
+            161.75,
+            397.25,
+            444.25
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "bbox_xyxy": [
+            441.5,
+            321.75,
+            630.5,
+            476.25
+          ]
+        },
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            38.25,
+            209.5,
+            285.75,
+            639.5
+          ]
+        },
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            412.0,
+            328.75,
+            631.0,
+            629.25
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "bbox_xyxy": [
+            33.25,
+            389.5,
+            235.75,
+            611.5
+          ]
+        }
+      ],
+      "prediction_count": 10,
+      "predictions": [
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.6696900725364685,
+          "bbox_xyxy": [
+            56.45,
+            209.72,
+            224.195,
+            329.247
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.6516247391700745,
+          "bbox_xyxy": [
+            312.631,
+            163.68,
+            363.429,
+            206.382
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.5512972474098206,
+          "bbox_xyxy": [
+            446.507,
+            325.645,
+            623.673,
+            481.078
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.37154585123062134,
+          "bbox_xyxy": [
+            27.609,
+            378.307,
+            236.943,
+            630.391
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.2709293067455292,
+          "bbox_xyxy": [
+            394.863,
+            484.584,
+            639.281,
+            639.993
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.14399266242980957,
+          "bbox_xyxy": [
+            298.855,
+            223.158,
+            385.406,
+            322.93
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.07700461149215698,
+          "bbox_xyxy": [
+            314.909,
+            164.904,
+            361.935,
+            229.569
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.05274149402976036,
+          "bbox_xyxy": [
+            45.491,
+            194.12,
+            232.98,
+            392.958
+          ]
+        },
+        {
+          "class_id": 2,
+          "class": "No Vest",
+          "model_class_id": 10,
+          "model_class": "NO-Safety Vest",
+          "confidence": 0.0047848219983279705,
+          "bbox_xyxy": [
+            218.882,
+            552.689,
+            319.313,
+            640.0
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.0010253505315631628,
+          "bbox_xyxy": [
+            0.04,
+            214.043,
+            28.99,
+            368.629
+          ]
+        }
+      ],
+      "matches_iou50_class_aware_one_to_one": [
+        {
+          "prediction_index": 0,
+          "ground_truth_index": 2,
+          "class": "Helmet",
+          "iou": 0.8986924095602418
+        },
+        {
+          "prediction_index": 2,
+          "ground_truth_index": 5,
+          "class": "Helmet",
+          "iou": 0.8877499328097027
+        },
+        {
+          "prediction_index": 5,
+          "ground_truth_index": 3,
+          "class": "Safety Vest",
+          "iou": 0.8872971912354067
+        },
+        {
+          "prediction_index": 3,
+          "ground_truth_index": 8,
+          "class": "Safety Vest",
+          "iou": 0.8519084939473115
+        },
+        {
+          "prediction_index": 1,
+          "ground_truth_index": 1,
+          "class": "Helmet",
+          "iou": 0.8379544590593212
+        },
+        {
+          "prediction_index": 4,
+          "ground_truth_index": 0,
+          "class": "Safety Vest",
+          "iou": 0.8068368064236869
+        }
+      ],
+      "unmatched_prediction_indices": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "unmatched_ground_truth_indices": [
+        4,
+        6,
+        7
+      ],
+      "wall_ms": 3870.66,
+      "inference_ms": 3790.898323059082
+    },
+    {
+      "image": "ppe_0008_jpg.rf.6c8f161a947452f7ffc2eaa08e8935d2.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "ground_truth_count": 11,
+      "ground_truth": [
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "bbox_xyxy": [
+            24.75,
+            74.0,
+            79.25,
+            180.0
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "bbox_xyxy": [
+            498.25,
+            104.0,
+            552.75,
+            196.0
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "bbox_xyxy": [
+            554.25,
+            108.0,
+            592.75,
+            212.0
+          ]
+        },
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            20.5,
+            44.0,
+            84.5,
+            294.0
+          ]
+        },
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            498.0,
+            60.0,
+            554.0,
+            298.0
+          ]
+        },
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            550.0,
+            66.0,
+            594.0,
+            304.0
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "bbox_xyxy": [
+            311.5,
+            84.0,
+            447.5,
+            306.0
+          ]
+        },
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            288.75,
+            10.0,
+            463.25,
+            566.0
+          ]
+        },
+        {
+          "class_id": 1,
+          "class": "No Helmet",
+          "bbox_xyxy": [
+            308.5,
+            8.0,
+            368.5,
+            68.0
+          ]
+        },
+        {
+          "class_id": 1,
+          "class": "No Helmet",
+          "bbox_xyxy": [
+            504.5,
+            64.0,
+            532.5,
+            90.0
+          ]
+        },
+        {
+          "class_id": 1,
+          "class": "No Helmet",
+          "bbox_xyxy": [
+            556.5,
+            76.0,
+            576.5,
+            106.0
+          ]
+        }
+      ],
+      "prediction_count": 13,
+      "predictions": [
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.9019834995269775,
+          "bbox_xyxy": [
+            23.094,
+            67.552,
+            72.47,
+            169.267
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.4842180013656616,
+          "bbox_xyxy": [
+            552.14,
+            106.328,
+            589.98,
+            203.489
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.34517374634742737,
+          "bbox_xyxy": [
+            321.948,
+            57.556,
+            439.351,
+            291.949
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.3027079105377197,
+          "bbox_xyxy": [
+            503.684,
+            98.753,
+            547.422,
+            182.37
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.26780086755752563,
+          "bbox_xyxy": [
+            314.159,
+            1.369,
+            370.566,
+            71.195
+          ]
+        },
+        {
+          "class_id": 1,
+          "class": "No Helmet",
+          "model_class_id": 8,
+          "model_class": "NO-Hardhat",
+          "confidence": 0.09413523972034454,
+          "bbox_xyxy": [
+            509.273,
+            63.543,
+            533.533,
+            87.437
+          ]
+        },
+        {
+          "class_id": 1,
+          "class": "No Helmet",
+          "model_class_id": 8,
+          "model_class": "NO-Hardhat",
+          "confidence": 0.0588592030107975,
+          "bbox_xyxy": [
+            509.004,
+            62.909,
+            533.903,
+            100.167
+          ]
+        },
+        {
+          "class_id": 1,
+          "class": "No Helmet",
+          "model_class_id": 8,
+          "model_class": "NO-Hardhat",
+          "confidence": 0.05674690380692482,
+          "bbox_xyxy": [
+            555.282,
+            73.927,
+            577.537,
+            105.694
+          ]
+        },
+        {
+          "class_id": 1,
+          "class": "No Helmet",
+          "model_class_id": 8,
+          "model_class": "NO-Hardhat",
+          "confidence": 0.0033877252135425806,
+          "bbox_xyxy": [
+            556.454,
+            75.25,
+            577.192,
+            98.813
+          ]
+        },
+        {
+          "class_id": 1,
+          "class": "No Helmet",
+          "model_class_id": 8,
+          "model_class": "NO-Hardhat",
+          "confidence": 0.0030382571276277304,
+          "bbox_xyxy": [
+            43.581,
+            38.001,
+            68.353,
+            65.243
+          ]
+        },
+        {
+          "class_id": 2,
+          "class": "No Vest",
+          "model_class_id": 10,
+          "model_class": "NO-Safety Vest",
+          "confidence": 0.002849666867405176,
+          "bbox_xyxy": [
+            210.442,
+            229.901,
+            232.485,
+            264.13
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.0026781070046126842,
+          "bbox_xyxy": [
+            604.03,
+            52.157,
+            614.098,
+            68.91
+          ]
+        },
+        {
+          "class_id": 1,
+          "class": "No Helmet",
+          "model_class_id": 8,
+          "model_class": "NO-Hardhat",
+          "confidence": 0.0012792118359357119,
+          "bbox_xyxy": [
+            542.024,
+            57.601,
+            551.433,
+            70.003
+          ]
+        }
+      ],
+      "matches_iou50_class_aware_one_to_one": [
+        {
+          "prediction_index": 7,
+          "ground_truth_index": 10,
+          "class": "No Helmet",
+          "iou": 0.8328207961360417
+        },
+        {
+          "prediction_index": 1,
+          "ground_truth_index": 2,
+          "class": "Safety Vest",
+          "iou": 0.7992554621847205
+        },
+        {
+          "prediction_index": 2,
+          "ground_truth_index": 6,
+          "class": "Safety Vest",
+          "iou": 0.73322299666465
+        },
+        {
+          "prediction_index": 0,
+          "ground_truth_index": 0,
+          "class": "Safety Vest",
+          "iou": 0.7270175076560754
+        },
+        {
+          "prediction_index": 5,
+          "ground_truth_index": 9,
+          "class": "No Helmet",
+          "iou": 0.7131837634927324
+        },
+        {
+          "prediction_index": 3,
+          "ground_truth_index": 1,
+          "class": "Safety Vest",
+          "iou": 0.653714398596066
+        }
+      ],
+      "unmatched_prediction_indices": [
+        4,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "unmatched_ground_truth_indices": [
+        3,
+        4,
+        5,
+        7,
+        8
+      ],
+      "wall_ms": 3887.71,
+      "inference_ms": 3815.5505657196045
+    },
+    {
+      "image": "ppe_0009_jpg.rf.dd2127438beac3f9409c6f83dc0a0c7b.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "ground_truth_count": 6,
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "bbox_xyxy": [
+            146.5,
+            10.75,
+            262.5,
+            183.25
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "bbox_xyxy": [
+            19.5,
+            51.5,
+            177.5,
+            202.5
+          ]
+        },
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            162.5,
+            5.5,
+            445.5,
+            627.5
+          ]
+        },
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            20.5,
+            25.0,
+            200.5,
+            640.0
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "bbox_xyxy": [
+            158.5,
+            264.75,
+            409.5,
+            636.25
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "bbox_xyxy": [
+            7.5,
+            300.5,
+            234.5,
+            629.5
+          ]
+        }
+      ],
+      "prediction_count": 13,
+      "predictions": [
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.4382231533527374,
+          "bbox_xyxy": [
+            0.144,
+            292.811,
+            248.805,
+            640.0
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.2960556447505951,
+          "bbox_xyxy": [
+            148.982,
+            21.974,
+            265.498,
+            181.084
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.21974456310272217,
+          "bbox_xyxy": [
+            144.832,
+            272.113,
+            421.509,
+            639.823
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.19223088026046753,
+          "bbox_xyxy": [
+            20.901,
+            35.813,
+            179.35,
+            222.835
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.02876780740916729,
+          "bbox_xyxy": [
+            147.654,
+            6.579,
+            274.639,
+            296.864
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.015863358974456787,
+          "bbox_xyxy": [
+            9.386,
+            264.018,
+            413.082,
+            640.0
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.0031159399077296257,
+          "bbox_xyxy": [
+            615.607,
+            247.036,
+            640.0,
+            378.834
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.002877312246710062,
+          "bbox_xyxy": [
+            622.911,
+            259.68,
+            640.0,
+            381.17
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.0023787934333086014,
+          "bbox_xyxy": [
+            256.512,
+            357.122,
+            434.227,
+            637.507
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.001902700518257916,
+          "bbox_xyxy": [
+            629.757,
+            261.38,
+            640.0,
+            382.231
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.0017057509394362569,
+          "bbox_xyxy": [
+            632.338,
+            267.281,
+            640.0,
+            391.09
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.0013536832993850112,
+          "bbox_xyxy": [
+            621.797,
+            281.183,
+            640.0,
+            338.291
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.0011470596073195338,
+          "bbox_xyxy": [
+            15.774,
+            8.466,
+            181.831,
+            310.636
+          ]
+        }
+      ],
+      "matches_iou50_class_aware_one_to_one": [
+        {
+          "prediction_index": 2,
+          "ground_truth_index": 4,
+          "class": "Safety Vest",
+          "iou": 0.8823514584216539
+        },
+        {
+          "prediction_index": 1,
+          "ground_truth_index": 0,
+          "class": "Helmet",
+          "iou": 0.8816243761636577
+        },
+        {
+          "prediction_index": 0,
+          "ground_truth_index": 5,
+          "class": "Safety Vest",
+          "iou": 0.8650637675277784
+        },
+        {
+          "prediction_index": 3,
+          "ground_truth_index": 1,
+          "class": "Helmet",
+          "iou": 0.7923085641367613
+        }
+      ],
+      "unmatched_prediction_indices": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "unmatched_ground_truth_indices": [
+        2,
+        3
+      ],
+      "wall_ms": 3762.29,
+      "inference_ms": 3689.284086227417
+    },
+    {
+      "image": "ppe_0013_jpg.rf.0abec4cb71250311e10dbb5615213094.jpg",
+      "image_size": [
+        640,
+        640
+      ],
+      "ground_truth_count": 3,
+      "ground_truth": [
+        {
+          "class_id": 3,
+          "class": "Person",
+          "bbox_xyxy": [
+            134.75,
+            19.0,
+            635.25,
+            640.0
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "bbox_xyxy": [
+            151.25,
+            509.0,
+            639.75,
+            640.0
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "bbox_xyxy": [
+            303.0,
+            0.0,
+            608.0,
+            225.0
+          ]
+        }
+      ],
+      "prediction_count": 18,
+      "predictions": [
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.6362319588661194,
+          "bbox_xyxy": [
+            309.852,
+            0.0,
+            602.071,
+            186.254
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.14713798463344574,
+          "bbox_xyxy": [
+            281.173,
+            0.84,
+            614.186,
+            427.856
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.08101239800453186,
+          "bbox_xyxy": [
+            117.825,
+            466.746,
+            419.146,
+            639.984
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.036658912897109985,
+          "bbox_xyxy": [
+            221.057,
+            477.39,
+            639.268,
+            639.979
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.019102513790130615,
+          "bbox_xyxy": [
+            490.087,
+            469.069,
+            640.0,
+            640.0
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.009732458740472794,
+          "bbox_xyxy": [
+            314.309,
+            0.0,
+            461.008,
+            170.837
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.009424561634659767,
+          "bbox_xyxy": [
+            152.519,
+            465.777,
+            537.43,
+            639.913
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.008751966990530491,
+          "bbox_xyxy": [
+            415.77,
+            467.558,
+            640.0,
+            639.716
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.006236035376787186,
+          "bbox_xyxy": [
+            217.035,
+            217.629,
+            633.155,
+            639.848
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.005837135016918182,
+          "bbox_xyxy": [
+            563.985,
+            502.828,
+            640.0,
+            639.957
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.005611834581941366,
+          "bbox_xyxy": [
+            536.198,
+            492.133,
+            639.944,
+            640.0
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.0030401439871639013,
+          "bbox_xyxy": [
+            123.991,
+            521.114,
+            438.357,
+            640.0
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.0028217739891260862,
+          "bbox_xyxy": [
+            586.277,
+            492.907,
+            640.0,
+            639.88
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.0026206320617347956,
+          "bbox_xyxy": [
+            620.062,
+            477.675,
+            640.0,
+            640.0
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.0018161304760724306,
+          "bbox_xyxy": [
+            608.869,
+            501.974,
+            640.0,
+            639.957
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.0015709581784904003,
+          "bbox_xyxy": [
+            225.065,
+            538.282,
+            633.468,
+            640.0
+          ]
+        },
+        {
+          "class_id": 4,
+          "class": "Safety Vest",
+          "model_class_id": 13,
+          "model_class": "Safety Vest",
+          "confidence": 0.0014335628366097808,
+          "bbox_xyxy": [
+            624.466,
+            465.072,
+            640.0,
+            640.0
+          ]
+        },
+        {
+          "class_id": 0,
+          "class": "Helmet",
+          "model_class_id": 3,
+          "model_class": "Hardhat",
+          "confidence": 0.0012623685179278255,
+          "bbox_xyxy": [
+            435.313,
+            0.0,
+            600.561,
+            189.409
+          ]
+        }
+      ],
+      "matches_iou50_class_aware_one_to_one": [
+        {
+          "prediction_index": 0,
+          "ground_truth_index": 2,
+          "class": "Helmet",
+          "iou": 0.7931068506520949
+        },
+        {
+          "prediction_index": 3,
+          "ground_truth_index": 1,
+          "class": "Safety Vest",
+          "iou": 0.7094239617828434
+        }
+      ],
+      "unmatched_prediction_indices": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "unmatched_ground_truth_indices": [
+        0
+      ],
+      "wall_ms": 3746.22,
+      "inference_ms": 3679.5573234558105
+    }
+  ]
+}

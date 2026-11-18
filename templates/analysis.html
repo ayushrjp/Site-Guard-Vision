@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Image Analysis Result — SiteGuardVision{% endblock %}
+{% block page_label %}Image Analysis{% endblock %}
+{% block topbar_eyebrow %}PPE compliance workspace{% endblock %}
+{% block workspace_class %}has-assistant{% endblock %}
+
+{% block content %}
+{% if not result.success %}
+<header class="page-head">
+  <div><p class="eyebrow">Image analysis</p><h2 class="page-title">Analysis could not be completed</h2></div>
+  <a class="btn btn-primary" href="{{ url_for('home') }}">{{ icon('arrow-left') }} Choose another photo</a>
+</header>
+<section class="card result-error">
+  <div class="alert alert-error" role="alert">{{ icon('alert') }}<div><h3>This photo couldn't be analyzed</h3><p>Try another image or choose a smaller image detail setting.</p></div></div>
+  {% if result.error %}<details class="error-detail"><summary>Technical detail</summary><code>{{ result.error }}</code></details>{% endif %}
+</section>
+{% else %}
+{% set status = result.assessment_status %}
+{% set model_info = result.model_info or {} %}
+{% set verdict_class = 'is-review' if status == 'potential_violation' else 'is-clear' if status == 'no_violation_detected' else 'is-insufficient' %}
+{% set status_label = 'Potential PPE Violation' if status == 'potential_violation' else 'No Potential Violations Found' if status == 'no_violation_detected' else 'Unable to Assess Fully' %}
+<header class="page-head result-page-head">
+  <div>
+    <p class="eyebrow">Computer vision · Analysis result</p>
+    <h2 class="page-title">Image Analysis Result</h2>
+    <p class="page-subtitle">PPE detection, worker tracking, and safety compliance assessment.</p>
+  </div>
+  <div class="page-actions">
+    <a class="btn btn-ghost" href="{{ url_for('home') }}#upload">{{ icon('plus') }}<span>New Analysis</span></a>
+    <a class="btn btn-primary" href="{{ url_for('home') }}#upload" data-focus-upload>{{ icon('upload') }}<span>Upload Image</span></a>
+  </div>
+</header>
+
+<section class="verdict {{ verdict_class }}" data-assessment-status="{{ status }}" aria-labelledby="verdict-title">
+  <div class="verdict-symbol">{{ icon('alert' if status == 'potential_violation' else 'check' if status == 'no_violation_detected' else 'info') }}</div>
+  <div class="verdict-copy">
+    <h3 id="verdict-title">{{ result.assessment_title }}</h3>
+    <p>{{ result.assessment_message }}</p>
+    {% if status == 'no_violation_detected' %}<p class="verdict-caveat">No missing-PPE detection passed the configured filter. This is not proof of compliance; verify manually.</p>{% endif %}
+  </div>
+  <div class="verdict-meta">
+    <span>Backend assessment</span>
+    <strong>{{ status_label }}</strong>
+    <small>Evidence-based · requires human review</small>
+  </div>
+</section>
+
+{% if not model_info.person_model_available %}
+<div class="alert alert-warning" role="alert">{{ icon('alert') }}<p><strong>Person detector unavailable.</strong> People are being read from the PPE model's Person class, which is unreliable in this checkpoint. Treat the person count as a lower bound.</p></div>
+{% endif %}
+{% if result.assessment_reasons %}
+<section class="reason-banner">
+  <span class="reason-icon">{{ icon('info') }}</span>
+  <div><strong>{{ 'Why the assessment is limited' if status == 'insufficient_evidence' else 'Assessment notes' }}</strong>
+    <ul>{% for reason in result.assessment_reasons %}<li>{{ reason }}</li>{% endfor %}</ul>
+  </div>
+</section>
+{% endif %}
+
+<section class="kpi-grid" aria-label="Detection summary">
+  <article class="kpi-card kpi-purple"><span class="kpi-icon">{{ icon('workers') }}</span><div><span class="kpi-label">Workers detected</span><strong class="kpi-value">{{ result.person_count }}</strong></div></article>
+  <article class="kpi-card kpi-yellow"><span class="kpi-icon">{{ icon('helmet') }}</span><div><span class="kpi-label">Hard hats</span><strong class="kpi-value">{{ result.hardhat_count }}</strong></div></article>
+  <article class="kpi-card kpi-green"><span class="kpi-icon">{{ icon('vest') }}</span><div><span class="kpi-label">Safety vests</span><strong class="kpi-value">{{ result.vest_count }}</strong></div></article>
+  <article class="kpi-card kpi-red"><span class="kpi-icon">{{ icon('helmet') }}</span><div><span class="kpi-label">Missing hard hats</span><strong class="kpi-value">{{ result.no_hardhat_count }}</strong></div></article>
+  <article class="kpi-card kpi-red"><span class="kpi-icon">{{ icon('vest') }}</span><div><span class="kpi-label">Missing vests</span><strong class="kpi-value">{{ result.no_vest_count }}</strong></div></article>
+</section>
+
+<div class="result-main-grid">
+  <section class="card annotated-card" aria-labelledby="annotated-title">
+    <div class="card-head">
+      <div><span class="card-kicker">{{ icon('image') }} Computer vision output</span><h3 class="card-title" id="annotated-title">Annotated Image</h3></div>
+      {% if result.annotated_rel %}<button type="button" class="icon-btn" data-preview-image="{{ annotated_url(result.annotated_rel) }}" aria-label="Enlarge annotated image" title="Enlarge image">{{ icon('expand') }}</button>{% endif %}
+    </div>
+    {% if result.annotated_rel %}
+    <figure class="figure">
+      <button class="annotated-button" type="button" data-preview-image="{{ annotated_url(result.annotated_rel) }}" aria-label="Open annotated image preview">
+        <img class="annotated" src="{{ annotated_url(result.annotated_rel) }}" alt="Actual YOLO annotated image showing detected people and PPE" />
+      </button>
+      <figcaption class="image-caption">
+        <span>{{ result.image_size[0] }} × {{ result.image_size[1] }} px original</span>
+        <span>PPE threshold {{ '%.2f' % (result.confidence_used or conf) }}</span>
+        <span>Person threshold {{ '%.2f' % (result.person_confidence_used or 0) }}</span>
+      </figcaption>
+    </figure>
+    <ul class="legend" aria-label="Annotation legend">
+      <li><span class="swatch swatch-person"></span>Person</li><li><span class="swatch swatch-ok"></span>PPE present</li><li><span class="swatch swatch-alert"></span>Missing PPE</li><li><span class="swatch swatch-other"></span>Other PPE</li>
+    </ul>
+    {% else %}<div class="empty-state">{{ icon('image') }}<p>No annotated image was produced.</p></div>{% endif %}
+  </section>
+
+  <div class="result-details-column">
+    <section class="card worker-card" aria-labelledby="workers-title">
+      <div class="card-head"><div><span class="card-kicker">{{ icon('workers') }} Per-person evidence</span><h3 class="card-title" id="workers-title">Worker Assessment</h3></div><span class="chip chip-muted">{{ result.persons|length }} workers</span></div>
+      {% if result.persons %}
+      <div class="table-scroll">
+        <table class="table worker-table">
+          <caption class="visually-hidden">PPE evidence attached to each detected worker</caption>
+          <thead><tr><th scope="col">Worker</th><th scope="col">Person</th><th scope="col">Hard Hat</th><th scope="col">Safety Vest</th><th scope="col">Status</th></tr></thead>
+          <tbody>{% for person in result.persons %}
+            <tr>
+              <th scope="row"><span class="worker-id">P{{ person.id }}</span></th>
+              <td>{{ '%.0f' % (person.confidence * 100) }}%</td>
+              <td><span class="badge {{ 'badge-ok' if person.helmet.state == 'present' else 'badge-alert' if person.helmet.state == 'missing' else 'badge-unknown' }}">{{ person.helmet.state|worker_state }}</span><small class="confidence-cell">{{ '%.0f' % (person.helmet.confidence * 100) ~ '%' if person.helmet.confidence is not none else '—' }}</small></td>
+              <td><span class="badge {{ 'badge-ok' if person.vest.state == 'present' else 'badge-alert' if person.vest.state == 'missing' else 'badge-unknown' }}">{{ person.vest.state|worker_state }}</span><small class="confidence-cell">{{ '%.0f' % (person.vest.confidence * 100) ~ '%' if person.vest.confidence is not none else '—' }}</small></td>
+              <td>{% if person.status == 'potential_violation' %}<span class="badge badge-alert">Potential Violation</span>{% elif person.status == 'clear' %}<span class="badge badge-ok">Clear</span>{% else %}<span class="badge badge-unknown">Unable to Assess</span>{% endif %}</td>
+            </tr>
+          {% endfor %}</tbody>
+        </table>
+      </div>
+      <p class="hint worker-note">Unconfirmed means no matching PPE box was found, not that gear is missing. Association is based on the backend head/torso regions.</p>
+      {% else %}<div class="empty-state compact">{{ icon('workers') }}<p>No workers were detected. No worker-level assessment is possible.</p></div>{% endif %}
+    </section>
+
+    <div class="detail-cards-grid">
+      <section class="card compact-card" aria-labelledby="detections-title">
+        <div class="card-head"><div><span class="card-kicker">{{ icon('target') }} Model output</span><h3 class="card-title" id="detections-title">Detection Details</h3></div></div>
+        {% if result.counts_by_source %}
+        <div class="table-scroll"><table class="table detection-table"><thead><tr><th>Class</th><th>Source (Model)</th><th class="num">Count</th></tr></thead><tbody>
+          {% for row in result.counts_by_source %}<tr><td>{{ row.label|pretty_label }}</td><td><span class="source-tag">{{ row.source }}</span></td><td class="num">{{ row.count }}</td></tr>{% endfor %}
+        </tbody></table></div>
+        {% else %}<p class="muted small">No objects were detected.</p>{% endif %}
+      </section>
+      <section class="card compact-card" aria-labelledby="info-title">
+        <div class="card-head"><div><span class="card-kicker">{{ icon('info') }} Processing metadata</span><h3 class="card-title" id="info-title">Key Information</h3></div></div>
+        <dl class="info-list">
+          <div><dt>{{ icon('clock') }} Inference time</dt><dd>{{ '%.0f' % (result.inference_ms or 0) }} ms</dd></div>
+          <div><dt>{{ icon('image') }} Image size</dt><dd>{{ result.image_size[0] }} × {{ result.image_size[1] }} px</dd></div>
+          <div><dt>{{ icon('cpu') }} PPE model</dt><dd><code>{{ model_info.ppe_model or 'Unavailable' }}</code></dd></div>
+          <div><dt>{{ icon('workers') }} Person model</dt><dd>{{ model_info.person_source or 'Unavailable' }}</dd></div>
+          <div><dt>{{ icon('target') }} PPE confidence</dt><dd>{{ '%.2f' % (result.confidence_used or conf) }}</dd></div>
+          <div><dt>{{ icon('check') }} Processing</dt><dd><span class="text-success">Completed</span></dd></div>
+        </dl>
+      </section>
+    </div>
+  </div>
+</div>
+
+<section class="card flags-card" aria-labelledby="flags-title">
+  <div class="card-head"><div><span class="card-kicker">{{ icon('alert') }} Review signals</span><h3 class="card-title" id="flags-title">Potential Missing-PPE Flags</h3></div></div>
+  <div class="flag-columns">
+    <div><h4>Hard-hat flags</h4>{% if result.potential_no_hardhat %}<ul class="violations">{% for v in result.potential_no_hardhat %}<li><span class="badge badge-alert">No hard hat</span><span>{{ '%.0f' % (v.confidence * 100) }}% confidence</span><span>{{ 'Worker P' ~ v.assigned_person if v.assigned_person else 'Unmatched to a worker' }}</span></li>{% endfor %}</ul>{% else %}<p class="muted small">No missing hard hats passed the filter.</p>{% endif %}</div>
+    <div><h4>Safety-vest flags</h4>{% if result.potential_no_vest %}<ul class="violations">{% for v in result.potential_no_vest %}<li><span class="badge badge-alert">No safety vest</span><span>{{ '%.0f' % (v.confidence * 100) }}% confidence</span><span>{{ 'Worker P' ~ v.assigned_person if v.assigned_person else 'Unmatched to a worker' }}</span></li>{% endfor %}</ul>{% else %}<p class="muted small">No missing safety vests passed the filter.</p>{% endif %}</div>
+  </div>
+</section>
+<p class="decision-note">{{ icon('info') }} SiteGuardVision provides AI-assisted decision support. Review the image and all uncertain detections manually; a green result is not a compliance certificate.</p>
+{% endif %}
+{% endblock %}
+
+{% block assistant %}
+{% if result.success %}{% include "_assistant_panel.html" %}{% endif %}
+{% endblock %}

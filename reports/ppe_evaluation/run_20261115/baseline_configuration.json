@@ -1,0 +1,48 @@
+{
+  "ppe_model": "models\\yolo_ppe_core.pt",
+  "ppe_model_sha256": "2b33d4d016f9751c5a25f4a72ce050e0a7e4e140b11c1669978d7154003a4f61",
+  "ppe_model_bytes": 52056210,
+  "person_model": "models\\person_yolov8n.pt",
+  "person_model_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+  "dataset_yaml": "dataset\\data.yaml",
+  "dataset_yaml_sha256": "87e05cde1e3015b8f1b64501dbffffa7ed1d5e4f068e1ce84e78288107e48e3b",
+  "production_ppe_confidence": 0.25,
+  "production_person_confidence_floor": 0.25,
+  "ppe_eval_confidence_floor": 0.001,
+  "ppe_eval_imgsz": 960,
+  "ppe_eval_nms_iou": 0.7,
+  "association": {
+    "minimum_ioa": 0.3,
+    "requires_center_inside": true,
+    "head_bottom_ratio": 0.38,
+    "torso_top_ratio": 0.16,
+    "torso_bottom_ratio": 0.82,
+    "torso_side_inset": 0.03,
+    "one_detection_per_person_slot": true
+  },
+  "class_mapping_dataset_to_model": {
+    "0": 3,
+    "1": 8,
+    "2": 10,
+    "3": 11,
+    "4": 13
+  },
+  "class_names_dataset": {
+    "0": "Helmet",
+    "1": "No Helmet",
+    "2": "No Vest",
+    "3": "Person",
+    "4": "Safety Vest"
+  },
+  "production_person_source": "models/person_yolov8n.pt; class 0; confidence max(requested, 0.25)",
+  "tracking": "No temporal/video tracking implementation found in infer_engine.py; identities P1..Pn are per-image detection order.",
+  "dependencies": {
+    "ultralytics": "8.3.40",
+    "torch": "2.15.0",
+    "numpy": "2.5.4",
+    "Pillow": "10.4.0",
+    "opencv-python": "5.0.0.93",
+    "matplotlib": "3.11.2"
+  },
+  "baseline_preserved": true
+}

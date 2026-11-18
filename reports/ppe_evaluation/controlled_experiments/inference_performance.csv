@@ -1,0 +1,3 @@
+imgsz,images,device,mean_inference_ms_per_image,median_inference_ms_per_image,p95_inference_ms_per_image,total_inference_seconds,end_to_end_inference_loop_seconds,evaluation_wall_seconds_including_warmup_matching_metrics,warmup
+640,90,CPU,2028.976248890265,2009.6209498587996,2212.2565050027333,182.60786240012385,182.6618034997955,205.60101410001516,one first-image prediction excluded from per-image timing
+960,90,CPU,4040.6590966507792,4019.1128000151366,4447.490460064728,363.65931869857013,363.7173899000045,369.43791850004345,one first-image prediction excluded from per-image timing

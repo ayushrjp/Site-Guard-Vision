@@ -1,0 +1,91 @@
+{
+  "splits": {
+    "train": {
+      "images": 997,
+      "instances": 6386,
+      "class_counts": {
+        "Helmet": 2116,
+        "No Helmet": 94,
+        "No Vest": 741,
+        "Person": 2362,
+        "Safety Vest": 1073
+      },
+      "image_resolutions": {
+        "640x640": 997
+      },
+      "image_width_min_median_max": [
+        640,
+        640,
+        640
+      ],
+      "image_height_min_median_max": [
+        640,
+        640,
+        640
+      ],
+      "box_size_categories_equiv_640": {
+        "medium": 2135,
+        "large": 3870,
+        "small": 381
+      }
+    },
+    "valid": {
+      "images": 119,
+      "instances": 715,
+      "class_counts": {
+        "Helmet": 232,
+        "No Helmet": 11,
+        "No Vest": 90,
+        "Person": 241,
+        "Safety Vest": 141
+      },
+      "image_resolutions": {
+        "640x640": 119
+      },
+      "image_width_min_median_max": [
+        640,
+        640,
+        640
+      ],
+      "image_height_min_median_max": [
+        640,
+        640,
+        640
+      ],
+      "box_size_categories_equiv_640": {
+        "large": 477,
+        "medium": 200,
+        "small": 38
+      }
+    },
+    "test": {
+      "images": 90,
+      "instances": 623,
+      "class_counts": {
+        "Helmet": 195,
+        "No Helmet": 24,
+        "No Vest": 61,
+        "Person": 214,
+        "Safety Vest": 129
+      },
+      "image_resolutions": {
+        "640x640": 90
+      },
+      "image_width_min_median_max": [
+        640,
+        640,
+        640
+      ],
+      "image_height_min_median_max": [
+        640,
+        640,
+        640
+      ],
+      "box_size_categories_equiv_640": {
+        "medium": 205,
+        "large": 395,
+        "small": 23
+      }
+    }
+  }
+}

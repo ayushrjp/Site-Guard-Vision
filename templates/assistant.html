@@ -1,0 +1,160 @@
+{% extends "layout.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Safety Assistant — SiteGuardVision{% endblock %}
+{% block page_label %}Safety Assistant{% endblock %}
+{% block topbar_eyebrow %}Grounded safety guidance{% endblock %}
+{% block content %}
+{% set rag_ok = not status.rag.dependency_error and not status.rag.index_error %}
+{% set doc_count = documents|length %}
+<header class="page-head assistant-page-head">
+  <div>
+    <p class="eyebrow eyebrow-orange">Grounded safety guidance</p>
+    <h1 class="page-title">Safety Assistant</h1>
+    <p class="page-subtitle">Ask about PPE, site procedures, or safety compliance. Answers come from the local Qwen2.5 3B model, with optional support from your indexed documents.</p>
+  </div>
+  <div class="page-actions">
+    <a class="btn btn-primary btn-lg" href="{{ url_for('settings_page') }}#documents">{{ icon('document') }}<span>Manage Documents</span></a>
+  </div>
+</header>
+
+<div class="assistant-page-grid">
+  <section class="card assistant-workspace" data-assistant data-analysis-id="{{ latest_analysis_id or '' }}">
+    <div class="assistant-statusbar" data-assistant-status data-compact-status data-mode="{{ status.mode }}">
+      <span class="status-item status-connection">
+        <span class="status-dot" aria-hidden="true"></span>
+        <strong data-assistant-status-text>
+          {%- if status.mode in ('ready', 'no_documents') -%}Ollama Online
+          {%- elif status.mode == 'offline' -%}Ollama Offline
+          {%- elif status.mode == 'models_missing' -%}Ollama Models Missing
+          {%- else -%}Assistant {{ status.mode|replace('_', ' ') }}
+          {%- endif -%}
+        </strong>
+      </span>
+      <span class="status-sep" aria-hidden="true"></span>
+      <span class="status-item">Model: <strong data-assistant-model>{{ status.chat_model|model_label }}</strong></span>
+      <span class="status-sep" aria-hidden="true"></span>
+      <span class="status-item">Documents: <strong data-assistant-rag>{{ 'Enabled' if rag_ok else 'Optional' }}</strong></span>
+      <span class="status-sep" aria-hidden="true"></span>
+      <span class="status-item">Knowledge Base: <strong data-assistant-docs>{{ doc_count }} Document{{ '' if doc_count == 1 else 's' }} (optional)</strong></span>
+      <button class="btn btn-outline btn-small status-refresh" type="button" data-status-refresh>{{ icon('refresh') }}<span>Refresh</span></button>
+    </div>
+
+    <div class="chat-history chat-history-page" data-chat-history role="log" aria-live="polite" aria-relevant="additions text">
+      <div class="assistant-hero" data-chat-welcome>
+        <div class="hero-scene" aria-hidden="true">
+          <svg viewBox="0 0 940 430" fill="none" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <path d="M120 390V215h110v175M148 245h20v24h-20zM182 245h20v24h-20zM148 285h20v24h-20zM182 285h20v24h-20zM148 325h20v24h-20zM182 325h20v24h-20z" stroke="#FF9200" stroke-opacity=".16" stroke-width="2"/>
+            <path d="M248 390V138h138v252M272 168h38v34h-38zM320 168h38v34h-38zM272 218h38v34h-38zM320 218h38v34h-38zM272 268h38v34h-38zM320 268h38v34h-38zM272 318h38v34h-38zM320 318h38v34h-38z" stroke="#FF9200" stroke-opacity=".18" stroke-width="2"/>
+            <path d="M640 390V248h96v142M663 272h18v22h-18zM698 272h18v22h-18zM663 308h18v22h-18zM698 308h18v22h-18z" stroke="#FF9200" stroke-opacity=".13" stroke-width="2"/>
+            <path d="M790 390V292h84v98M810 314h14v18h-14zM840 314h14v18h-14z" stroke="#FF9200" stroke-opacity=".12" stroke-width="2"/>
+            <path d="M700 64v190M700 64h150M700 92h108M700 120h72" stroke="#FF9200" stroke-opacity=".22" stroke-width="2.4"/>
+            <path d="M700 64 620 120M700 64l54 36M700 64l-62 20" stroke="#FF9200" stroke-opacity=".18" stroke-width="2"/>
+            <path d="M828 120v44M828 164h-14a14 14 0 0 0 28 0h-14Z" stroke="#FF9200" stroke-opacity=".2" stroke-width="2"/>
+            <path d="M0 390h940" stroke="#FF9200" stroke-opacity=".14" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="hero-content">
+          <span class="hero-hardhat" aria-hidden="true">{{ icon('helmet') }}</span>
+          <h2>Ask a safety question</h2>
+          <p>Get clear, conversational answers about PPE and site safety, and explanations of your latest image analysis. No documents required.</p>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <span class="feature-icon">{{ icon('assistant') }}</span>
+              <strong>Conversational AI</strong>
+              <span>Powered by Qwen2.5 3B.</span>
+            </article>
+            <article class="feature-card">
+              <span class="feature-icon">{{ icon('image') }}</span>
+              <strong>Image-Aware</strong>
+              <span>Explains the current analysis.</span>
+            </article>
+            <article class="feature-card">
+              <span class="feature-icon">{{ icon('document') }}</span>
+              <strong>Optional Documents</strong>
+              <span>Cited when available.</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="suggested-prompts prompt-grid" data-suggested-prompts>
+      <button type="button" data-prompt="What are the PPE requirements on a construction site?"><span>What are the PPE requirements on a construction site?</span>{{ icon('arrow-left') }}</button>
+      <button type="button" data-prompt="Why is a safety vest important?"><span>Why is a safety vest important?</span>{{ icon('arrow-left') }}</button>
+      <button type="button" data-prompt="Explain the current worker assessment."><span>Explain the current worker assessment.</span>{{ icon('arrow-left') }}</button>
+      <button type="button" data-prompt="What should I verify before approving this image?"><span>What should I verify before approving this image?</span>{{ icon('arrow-left') }}</button>
+    </div>
+
+    <form class="chat-composer chat-composer-page" data-chat-form>
+      <a class="composer-attach" href="{{ url_for('settings_page') }}#documents" aria-label="Add a document to the knowledge base" title="Add a document to the knowledge base">{{ icon('paperclip') }}</a>
+      <label class="visually-hidden" for="assistant-question-page">Ask a safety question</label>
+      <textarea id="assistant-question-page" name="message" rows="1" maxlength="2000" placeholder="Ask a safety or compliance question..." data-chat-input required></textarea>
+      <button class="send-button" type="submit" data-chat-send aria-label="Send question">{{ icon('send') }}</button>
+    </form>
+    <p class="assistant-footnote">Grounded in indexed documents · Verify guidance against your site policy</p>
+  </section>
+
+  <aside class="assistant-side-stack">
+    <section class="card kb-card">
+      <div class="kb-head">
+        <div>
+          <p class="card-kicker kicker-orange">{{ icon('layers') }} Knowledge Base</p>
+          <h2 class="panel-title">Indexed Documents</h2>
+        </div>
+        <span class="count-badge" aria-label="{{ doc_count }} indexed documents">{{ doc_count }}</span>
+      </div>
+
+      {% if documents %}
+      <ul class="kb-list">
+        {% for document in documents %}
+        {% set ext = document.filename.rsplit('.', 1)[-1]|upper %}
+        <li class="kb-item">
+          <span class="pdf-icon {{ 'pdf-icon-plain' if ext != 'PDF' }}" aria-hidden="true">{{ icon('document') }}<em>{{ ext }}</em></span>
+          <span class="kb-copy">
+            <strong title="{{ document.filename }}">{{ document.filename }}</strong>
+            <small>
+              {%- if document.present -%}
+                {% if document.pages %}{{ document.pages }} pages · {% endif %}{{ document.chunks }} chunks · Indexed
+              {%- else -%}
+                File missing on disk
+              {%- endif -%}
+            </small>
+          </span>
+          {% if document.present %}
+          <span class="kb-check" title="Indexed">{{ icon('check') }}</span>
+          {% else %}
+          <span class="kb-check kb-check-warn" title="File missing on disk">{{ icon('alert') }}</span>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="kb-empty">
+        <span class="kb-empty-icon">{{ icon('document') }}</span>
+        <strong>No documents indexed (optional)</strong>
+        <p>General questions already work. Add a site policy or handbook if you want answers grounded in your own documents.</p>
+        <a class="btn btn-outline btn-block" href="{{ url_for('settings_page') }}#documents">{{ icon('plus') }}<span>Add a Document (optional)</span></a>
+      </div>
+      {% endif %}
+
+      {% if pending %}<p class="notice-inline">{{ pending|length }} document(s) saved but not indexed. Re-index from Settings to make them searchable.</p>{% endif %}
+    </section>
+
+    <section class="card how-card">
+      <div class="kb-head">
+        <div>
+          <p class="card-kicker kicker-orange">{{ icon('info') }} How Answers Work</p>
+        </div>
+      </div>
+      <ol class="how-list">
+        <li><span class="how-num">1</span><p>Answer general questions from Qwen2.5 3B knowledge.</p></li>
+        <li><span class="how-num">2</span><p>Add image analysis facts when the question is about an uploaded photo.</p></li>
+        <li><span class="how-num">3</span><p>Optionally retrieve indexed documents and cite them when relevant.</p></li>
+        <li><span class="how-num">4</span><p>Clearly separate general guidance, documents, and detection facts.</p></li>
+      </ol>
+    </section>
+
+    <a class="btn btn-outline btn-block assistant-settings-btn" href="{{ url_for('settings_page') }}">{{ icon('settings') }}<span>Assistant Settings</span></a>
+  </aside>
+</div>
+{% endblock %}

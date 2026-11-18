@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#071525" />
+  <meta name="description" content="SiteGuardVision marks PPE in construction-site photos and provides grounded safety guidance from local documents." />
+  <title>{% block title %}SiteGuardVision{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/siteguard.css') }}" />
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/videos.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/assistant.js') }}" defer></script>
+</head>
+<body class="app-body">
+{% from "_icons.html" import icon %}
+{% set ep = request.endpoint or '' %}
+{% set active_key = 'analysis' if ep in ('home', 'analyze', 'analysis_detail')
+  else 'videos' if ep in ('videos_page', 'video_result_page')
+  else 'assistant' if ep == 'assistant_page'
+  else 'reports' if ep in ('reports_page', 'reports_export')
+  else 'evaluation' if ep == 'evaluation_page'
+  else 'settings' if ep in ('settings_page', 'settings_save_form')
+  else '' %}
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="app-shell">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">
+        {{ icon('menu') }}
+      </button>
+
+      <a class="brand" href="{{ url_for('home') }}" aria-label="SiteGuardVision home">
+        <span class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 56 62" fill="none" focusable="false">
+            <path d="M28 2.8 51.5 11v15.4c0 13.6-9.5 23.8-23.5 28.6C14 50.2 4.5 40 4.5 26.4V11L28 2.8Z" fill="#0A1A2C" stroke="#F4F7FB" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M14.6 36.2h26.8v3.7H14.6v-3.7Z" fill="#FF9200"/>
+            <path d="M18.4 36.2v-4.4c0-5.6 4.3-9.9 9.6-9.9s9.6 4.3 9.6 9.9v4.4" fill="#FF9200"/>
+            <path d="M25.4 23.5v-2.8h5.2v2.8" stroke="#FF9200" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-name">SiteGuard<span>Vision</span></span>
+          <span class="brand-sub">AI-Powered PPE Compliance System</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="topbar-right">
+      <span class="system-pill" data-system-status data-state="checking" role="status" aria-live="polite">
+        <span class="system-dot" aria-hidden="true"></span>
+        <span data-system-label>Checking system</span>
+      </span>
+
+      <label class="page-select-wrap">
+        <span class="visually-hidden">Switch section</span>
+        <select class="page-select" data-page-nav aria-label="Current section">
+          <option value="{{ url_for('home') }}" {{ 'selected' if active_key == 'analysis' }}>Image Analysis</option>
+          <option value="{{ url_for('videos_page') }}" {{ 'selected' if active_key == 'videos' }}>Video Analysis</option>
+          <option value="{{ url_for('assistant_page') }}" {{ 'selected' if active_key == 'assistant' }}>Safety Assistant</option>
+          <option value="{{ url_for('reports_page') }}" {{ 'selected' if active_key == 'reports' }}>Reports</option>
+          <option value="{{ url_for('evaluation_page') }}" {{ 'selected' if active_key == 'evaluation' }}>Dataset &amp; Evaluation</option>
+          <option value="{{ url_for('settings_page') }}" {{ 'selected' if active_key == 'settings' }}>Settings</option>
+        </select>
+        <span class="page-select-chevron" aria-hidden="true">{{ icon('chevron') }}</span>
+      </label>
+
+      <a class="icon-btn topbar-icon" href="{{ url_for('reports_page') }}" aria-label="Analysis history" title="Analysis history">
+        {{ icon('bell') }}
+      </a>
+
+      <a class="profile-chip" href="{{ url_for('settings_page') }}" aria-label="Workspace settings" title="Local workspace">
+        <span class="profile-avatar" aria-hidden="true">SG</span>
+      </a>
+    </div>
+  </header>
+
+  <aside class="sidebar" id="sidebar" data-sidebar aria-label="Main navigation">
+    <nav class="side-nav" aria-label="Sections">
+      <a class="side-link {{ 'is-active' if active_key == 'analysis' }}" href="{{ url_for('home') }}" aria-label="Analysis" title="Analysis" {% if active_key == 'analysis' %}aria-current="page"{% endif %}>
+        <span class="side-icon">{{ icon('analysis') }}</span>
+        <span>Analysis</span>
+      </a>
+      <a class="side-link {{ 'is-active' if active_key == 'videos' }}" href="{{ url_for('videos_page') }}" aria-label="Video Analysis" title="Video Analysis" {% if active_key == 'videos' %}aria-current="page"{% endif %}>
+        <span class="side-icon">{{ icon('video') }}</span>
+        <span>Video Analysis</span>
+        <span class="side-badge">NEW</span>
+      </a>
+      <a class="side-link {{ 'is-active' if active_key == 'assistant' }}" href="{{ url_for('assistant_page') }}" aria-label="Safety Assistant" title="Safety Assistant" {% if active_key == 'assistant' %}aria-current="page"{% endif %}>
+        <span class="side-icon">{{ icon('assistant') }}</span>
+        <span>Safety Assistant</span>
+        <span class="side-badge">RAG</span>
+      </a>
+      <a class="side-link {{ 'is-active' if active_key == 'reports' }}" href="{{ url_for('reports_page') }}" aria-label="Reports" title="Reports" {% if active_key == 'reports' %}aria-current="page"{% endif %}>
+        <span class="side-icon">{{ icon('reports') }}</span>
+        <span>Reports</span>
+      </a>
+      <a class="side-link {{ 'is-active' if active_key == 'evaluation' }}" href="{{ url_for('evaluation_page') }}" aria-label="Dataset & Evaluation" title="Dataset & Evaluation" {% if active_key == 'evaluation' %}aria-current="page"{% endif %}>
+        <span class="side-icon">{{ icon('evaluation') }}</span>
+        <span>Dataset &amp; Evaluation</span>
+      </a>
+      <a class="side-link {{ 'is-active' if active_key == 'settings' }}" href="{{ url_for('settings_page') }}" aria-label="Settings" title="Settings" {% if active_key == 'settings' %}aria-current="page"{% endif %}>
+        <span class="side-icon">{{ icon('settings') }}</span>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-art" aria-hidden="true">
+      <svg viewBox="0 0 240 160" fill="none" focusable="false">
+        <path d="M8 148h224" stroke="rgba(255,146,0,.28)" stroke-width="1.4"/>
+        <path d="M24 148v-42h44v42" stroke="#FF9200" stroke-opacity=".58" stroke-width="1.5"/>
+        <path d="M24 118h44M24 132h44M38 106v42M54 106v42" stroke="#FF9200" stroke-opacity=".28" stroke-width="1.2"/>
+        <path d="M76 148V70h48v78" stroke="#FF9200" stroke-opacity=".7" stroke-width="1.6"/>
+        <path d="M85 82h9v9h-9zM101 82h9v9h-9zM85 99h9v9h-9zM101 99h9v9h-9zM85 116h9v9h-9zM101 116h9v9h-9z" fill="rgba(255,146,0,.17)" stroke="#FF9200" stroke-opacity=".4" stroke-width="1"/>
+        <path d="M131 148v-56l26-17 26 17v56" stroke="#FF9200" stroke-opacity=".55" stroke-width="1.5"/>
+        <path d="M131 148h52" stroke="#FF9200" stroke-opacity=".55" stroke-width="1.5"/>
+        <path d="M188 148v-28h22v28M210 148v-44h22v44" stroke="#FF9200" stroke-opacity=".35" stroke-width="1.3"/>
+        <path d="M160 10v78M160 10h62M160 24h46M160 38h34" stroke="#FF9200" stroke-opacity=".78" stroke-width="1.7"/>
+        <path d="M160 10 122 34M160 10l38 24M160 10l-8 24" stroke="#FF9200" stroke-opacity=".65" stroke-width="1.6"/>
+        <path d="M204 38v24M204 62h-8a8 8 0 0 0 16 0h-8Z" stroke="#FF9200" stroke-opacity=".65" stroke-width="1.4"/>
+        <circle cx="44" cy="58" r="17" stroke="#FF9200" stroke-opacity=".22" stroke-width="1.2"/>
+        <path d="M34 58h20M44 48v20" stroke="#FF9200" stroke-opacity=".22" stroke-width="1.2"/>
+      </svg>
+    </div>
+
+    <p class="sidebar-quote">Safer Workers<br /><span>Safer Sites</span></p>
+  </aside>
+
+  <div class="sidebar-overlay" data-sidebar-overlay hidden></div>
+
+  <div class="app-main">
+    <div class="workspace {% block workspace_class %}{% endblock %}">
+      <main id="main" class="page-content" tabindex="-1">
+        {% block content %}{% endblock %}
+
+        <footer class="app-footer">
+          <p><strong>Decision support, not a verdict.</strong> Every flag needs manual verification.</p>
+          <p>SiteGuardVision prototype · Runs locally · Image analysis is never blocked by the assistant.</p>
+        </footer>
+      </main>
+      {% block assistant %}{% endblock %}
+    </div>
+  </div>
+</div>
+
+<dialog class="lightbox" data-lightbox aria-label="Annotated image preview">
+  <div class="lightbox-frame">
+    <div class="lightbox-bar">
+      <span>Annotated image</span>
+      <button class="icon-btn" type="button" data-lightbox-close aria-label="Close preview">{{ icon('close') }}</button>
+    </div>
+    <img data-lightbox-image alt="Annotated analysis preview" />
+  </div>
+</dialog>
+
+<div class="toast-region" data-toast-region aria-live="polite" aria-atomic="false"></div>
+</body>
+</html>

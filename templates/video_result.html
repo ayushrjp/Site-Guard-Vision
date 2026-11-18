@@ -1,0 +1,298 @@
+{% extends "layout.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Video Result — SiteGuardVision{% endblock %}
+{% block page_label %}Video Analysis{% endblock %}
+{% block topbar_eyebrow %}Temporal PPE compliance workspace{% endblock %}
+
+{% block content %}
+{% set result = job.result or {} %}
+{% set processing = result.processing or {} %}
+{% set annotated = result.annotated or {} %}
+{% set video_meta = result.video or {} %}
+{% set summary = job.summary or {} %}
+{% set workers = result.workers or [] %}
+{% set notes = result.notes or [] %}
+{% set running = job.status in ('queued', 'running') %}
+
+<header class="page-head result-page-head">
+  <div>
+    <p class="eyebrow">Computer vision · Video result</p>
+    <h2 class="page-title">{{ job.original_filename }}</h2>
+    <p class="page-subtitle">
+      {{ 'Sample video' if job.source_type == 'sample' else 'Uploaded video' }} ·
+      {{ '%.1f'|format(job.duration_s or 0) }} s ·
+      {{ job.width or '—' }} × {{ job.height or '—' }} px
+    </p>
+  </div>
+  <div class="page-actions">
+    <a class="btn btn-ghost" href="{{ url_for('videos_page') }}">{{ icon('arrow-left') }}<span>Video Library</span></a>
+    {% if job.status == 'completed' %}
+      <a class="btn btn-soft" href="{{ url_for('api_video_job_output', job_id=job.id) }}">{{ icon('download') }}<span>Download Annotated</span></a>
+    {% endif %}
+  </div>
+</header>
+
+{% if running %}
+  <section class="verdict is-insufficient" data-job-live="{{ job.id }}" data-job-status-url="{{ url_for('api_video_job', job_id=job.id) }}">
+    <div class="verdict-symbol">{{ icon('clock') }}</div>
+    <div class="verdict-copy">
+      <h3>Analysis in progress</h3>
+      <p>Frames are being sampled, tracked, and verified. This page refreshes automatically when the job finishes.</p>
+      <p class="verdict-caveat" data-job-live-message>{{ job.message or 'Waiting for the worker…' }}</p>
+    </div>
+    <div class="verdict-meta">
+      <span>Status</span>
+      <strong>{{ job.status|capitalize }}</strong>
+      <small data-job-live-progress>{{ '%.0f'|format(job.progress or 0) }}% complete</small>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <div><span class="card-kicker">{{ icon('analysis') }} Progress</span><h3 class="card-title">Processing video</h3></div>
+      <span class="chip chip-muted">One job at a time</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" data-job-live-fill style="width: {{ job.progress or 0 }}%"></div></div>
+    <dl class="info-list video-live-info">
+      <div><dt>{{ icon('image') }} Sampled frames</dt><dd>{{ job.processed_frames or 0 }} of {{ job.sampled_frames or '—' }}</dd></div>
+      <div><dt>{{ icon('clock') }} Started</dt><dd>{{ job.started_at|datetime_short }}</dd></div>
+      <div><dt>{{ icon('video') }} Source</dt><dd>{{ 'Sample library' if job.source_type == 'sample' else 'Uploaded file' }}</dd></div>
+    </dl>
+    <p class="hint">You can leave this page. The job keeps running in the background and its result stays available in the video library.</p>
+  </section>
+
+{% elif job.status == 'failed' %}
+  <section class="verdict is-review">
+    <div class="verdict-symbol">{{ icon('alert') }}</div>
+    <div class="verdict-copy">
+      <h3>Video analysis failed</h3>
+      <p>{{ job.error or 'The video could not be processed.' }}</p>
+      <p class="verdict-caveat">No results were fabricated. Fix the file or choose another video and try again.</p>
+    </div>
+    <div class="verdict-meta">
+      <span>Status</span>
+      <strong>Failed</strong>
+      <small>{{ job.completed_at|datetime_short }}</small>
+    </div>
+  </section>
+  <section class="card">
+    <div class="card-head"><div><span class="card-kicker">{{ icon('info') }} Job detail</span><h3 class="card-title">What happened</h3></div></div>
+    <dl class="info-list">
+      <div><dt>{{ icon('video') }} Source</dt><dd>{{ 'Sample library' if job.source_type == 'sample' else 'Uploaded file' }}</dd></div>
+      <div><dt>{{ icon('clock') }} Created</dt><dd>{{ job.created_at|datetime_short }}</dd></div>
+      <div><dt>{{ icon('alert') }} Error</dt><dd>{{ job.error or 'Unknown error' }}</dd></div>
+    </dl>
+    <div class="empty-state compact">
+      {{ icon('video') }}
+      <p>Try a shorter video, a lower sampling rate, or a smaller inference resolution.</p>
+      <a class="btn btn-primary" href="{{ url_for('videos_page') }}">{{ icon('arrow-left') }} Back to video library</a>
+    </div>
+  </section>
+
+{% else %}
+  {% set violation_workers = summary.violation_workers or 0 %}
+  {% set event_count = summary.event_count or 0 %}
+  {% set compliant_workers = summary.compliant_workers or 0 %}
+  {% set unconfirmed_workers = summary.unconfirmed_workers or 0 %}
+  {% set verdict_class = 'is-review' if event_count else 'is-clear' if compliant_workers else 'is-insufficient' %}
+  {% set verdict_title = 'Potential PPE violations found' if event_count else 'No verified violations found' if compliant_workers else 'Evidence was not sufficient' %}
+  {% set verdict_message = (
+    'Explicit negative PPE evidence persisted across sampled frames. Review each timestamped event and the annotated video before acting.'
+    if event_count else
+    'Tracked workers showed present hard hats and vests, and no negative PPE evidence met the verification threshold. This is not proof of compliance.'
+    if compliant_workers else
+    'Workers were tracked, but the evidence did not support a confident compliant or violation state. Treat the result as unconfirmed.'
+  ) %}
+
+  <section class="verdict {{ verdict_class }}">
+    <div class="verdict-symbol">{{ icon('alert' if event_count else 'check' if compliant_workers else 'info') }}</div>
+    <div class="verdict-copy">
+      <h3>{{ verdict_title }}</h3>
+      <p>{{ verdict_message }}</p>
+      <p class="verdict-caveat">Temporal verification: {{ job.settings.min_observations if job.settings and job.settings.min_observations else 3 }} negative observations required at {{ '%.0f'|format((job.settings.min_ratio if job.settings and job.settings.min_ratio else 0.5) * 100) }}% support.</p>
+    </div>
+    <div class="verdict-meta">
+      <span>Job status</span>
+      <strong>Completed</strong>
+      <small>{{ job.completed_at|datetime_short }}</small>
+    </div>
+  </section>
+
+  <section class="kpi-grid kpi-grid-five" aria-label="Video analysis summary">
+    <article class="kpi-card kpi-purple"><span class="kpi-icon">{{ icon('workers') }}</span><div><span class="kpi-label">Unique workers</span><strong class="kpi-value">{{ summary.worker_count or 0 }}</strong></div></article>
+    <article class="kpi-card kpi-green"><span class="kpi-icon">{{ icon('check') }}</span><div><span class="kpi-label">Compliant</span><strong class="kpi-value">{{ compliant_workers }}</strong></div></article>
+    <article class="kpi-card kpi-red"><span class="kpi-icon">{{ icon('alert') }}</span><div><span class="kpi-label">Potential violations</span><strong class="kpi-value">{{ violation_workers }}</strong></div></article>
+    <article class="kpi-card kpi-yellow"><span class="kpi-icon">{{ icon('info') }}</span><div><span class="kpi-label">Unconfirmed</span><strong class="kpi-value">{{ unconfirmed_workers }}</strong></div></article>
+    <article class="kpi-card kpi-blue"><span class="kpi-icon">{{ icon('clock') }}</span><div><span class="kpi-label">Safety events</span><strong class="kpi-value">{{ event_count }}</strong></div></article>
+  </section>
+
+  <div class="result-main-grid video-result-grid">
+    <section class="card annotated-card" aria-labelledby="annotated-video-title">
+      <div class="card-head">
+        <div><span class="card-kicker">{{ icon('video') }} Annotated output</span><h3 class="card-title" id="annotated-video-title">Worker &amp; PPE Overlay</h3></div>
+        {% if annotated.width %}<span class="chip chip-muted">{{ annotated.width }}×{{ annotated.height }}</span>{% endif %}
+      </div>
+      <figure class="figure">
+        <video class="video-player" data-annotated-player controls playsinline preload="metadata"
+          src="{{ url_for('api_video_job_output', job_id=job.id) }}">
+          Your browser cannot play this annotated MP4.
+        </video>
+        <figcaption class="image-caption">
+          <span>Worker boxes and IDs</span>
+          <span>PPE detections</span>
+          <span>Compliance state</span>
+          <span>Timestamp</span>
+        </figcaption>
+      </figure>
+      <ul class="legend" aria-label="Annotation legend">
+        <li><span class="swatch swatch-ok"></span>Compliant</li>
+        <li><span class="swatch swatch-alert"></span>Potential violation</li>
+        <li><span class="swatch swatch-other"></span>Unconfirmed</li>
+        <li><span class="swatch swatch-person"></span>PPE detection</li>
+      </ul>
+      <p class="hint">The overlay shows <code>#worker</code>, state, and per-slot status (H hard hat, V vest, G gloves, E eye protection, M mask).</p>
+    </section>
+
+    <div class="result-details-column">
+      <section class="card" aria-labelledby="original-video-title">
+        <div class="card-head">
+          <div><span class="card-kicker">{{ icon('image') }} Source footage</span><h3 class="card-title" id="original-video-title">Original Video</h3></div>
+          <span class="chip chip-muted">{{ 'Sample' if job.source_type == 'sample' else 'Upload' }}</span>
+        </div>
+        <video class="video-player video-player-original" controls playsinline preload="metadata"
+          src="{{ url_for('api_video_job_source', job_id=job.id) }}">
+          Your browser cannot play this source video.
+        </video>
+      </section>
+
+      <section class="card compact-card" aria-labelledby="video-info-title">
+        <div class="card-head"><div><span class="card-kicker">{{ icon('info') }} Processing metadata</span><h3 class="card-title" id="video-info-title">Key Information</h3></div></div>
+        <dl class="info-list">
+          <div><dt>{{ icon('clock') }} Duration</dt><dd>{{ video_time(job.duration_s) }}</dd></div>
+          <div><dt>{{ icon('image') }} Source resolution</dt><dd>{{ job.width or '—' }} × {{ job.height or '—' }} px</dd></div>
+          <div><dt>{{ icon('video') }} Source frame rate</dt><dd>{{ '%.2f'|format(job.fps or 0) }} fps</dd></div>
+          <div><dt>{{ icon('layers') }} Source frames</dt><dd>{{ job.total_frames or '—' }}</dd></div>
+          <div><dt>{{ icon('target') }} Sampled frames</dt><dd>{{ processing.estimated_frames or job.sampled_frames or '—' }}</dd></div>
+          <div><dt>{{ icon('check') }} Processed frames</dt><dd>{{ job.processed_frames or 0 }}</dd></div>
+          <div><dt>{{ icon('cpu') }} Inference size</dt><dd>{{ processing.imgsz or '—' }} px</dd></div>
+          <div><dt>{{ icon('target') }} PPE confidence</dt><dd>{{ '%.2f'|format(processing.conf or 0) }}</dd></div>
+          <div><dt>{{ icon('clock') }} Processing time</dt><dd>{{ '%.1f'|format(processing.elapsed_s or 0) }} s</dd></div>
+          <div><dt>{{ icon('video') }} Output codec</dt><dd>{{ processing.codec or '—' }} · {{ '%.2f'|format(processing.output_fps or 0) }} fps</dd></div>
+        </dl>
+      </section>
+    </div>
+  </div>
+
+  <section class="card video-events-card" aria-labelledby="video-events-title">
+    <div class="card-head">
+      <div><span class="card-kicker">{{ icon('clock') }} Temporal verification</span><h3 class="card-title" id="video-events-title">Timestamped Safety Events</h3></div>
+      <span class="chip chip-muted">{{ events|length }} event{{ '' if events|length == 1 else 's' }}</span>
+    </div>
+    {% if events %}
+      <div class="table-scroll">
+        <table class="table video-events-table">
+          <caption class="visually-hidden">Verified negative PPE events per tracked worker</caption>
+          <thead>
+            <tr>
+              <th scope="col">First seen</th>
+              <th scope="col">Last seen</th>
+              <th scope="col">Worker</th>
+              <th scope="col">Category</th>
+              <th scope="col">Evidence</th>
+              <th scope="col" class="num">Frames</th>
+              <th scope="col" class="num">Confidence</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in events %}
+              <tr>
+                <th scope="row">
+                  <button type="button" class="event-time" data-seek-time="{{ event.first_seen_s }}" title="Seek the annotated video to this moment">
+                    {{ icon('play') }}{{ video_time(event.first_seen_s) }}
+                  </button>
+                </th>
+                <td>{{ video_time(event.last_seen_s) }}</td>
+                <td><span class="worker-id">#{{ event.worker_id }}</span></td>
+                <td>{{ event.label or event.category }}</td>
+                <td><span class="video-evidence">{{ event.evidence or 'Explicit negative observation.' }}</span></td>
+                <td class="num">{{ event.observations or '—' }}</td>
+                <td class="num">{{ '%.0f'|format((event.confidence or 0) * 100) ~ '%' if event.confidence is not none else '—' }}</td>
+                <td><span class="badge badge-alert">Potential Violation</span></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">Events require explicit negative PPE boxes, not merely the absence of a positive box. Click a timestamp to jump the annotated player.</p>
+    {% else %}
+      <div class="empty-state compact">
+        {{ icon('check') }}
+        <p>No safety event passed temporal verification.</p>
+        <p class="muted small">This means no persistent negative evidence was found — not that every worker is compliant.</p>
+      </div>
+    {% endif %}
+  </section>
+
+  <section class="card video-workers-card" aria-labelledby="video-workers-title">
+    <div class="card-head">
+      <div><span class="card-kicker">{{ icon('workers') }} Per-worker evidence</span><h3 class="card-title" id="video-workers-title">Worker Assessment</h3></div>
+      <span class="chip chip-muted">{{ workers|length }} worker{{ '' if workers|length == 1 else 's' }}</span>
+    </div>
+    {% if workers %}
+      <div class="table-scroll">
+        <table class="table worker-table video-worker-table">
+          <caption class="visually-hidden">Accumulated PPE evidence per tracked worker</caption>
+          <thead>
+            <tr>
+              <th scope="col">Worker</th>
+              <th scope="col">Observed</th>
+              <th scope="col">Hard Hat</th>
+              <th scope="col">Safety Vest</th>
+              <th scope="col">Gloves</th>
+              <th scope="col">Goggles</th>
+              <th scope="col">Mask</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for worker in workers %}
+              <tr>
+                <th scope="row"><span class="worker-id">#{{ worker.id }}</span></th>
+                <td><span class="confidence-cell">{{ video_time(worker.first_seen_s) }} – {{ video_time(worker.last_seen_s) }}<br />{{ worker.frames_observed }} frames</span></td>
+                {% for slot in ['helmet', 'vest', 'gloves', 'goggles', 'mask'] %}
+                  {% set state = worker.states.get(slot, 'unconfirmed') %}
+                  <td><span class="badge {{ 'badge-ok' if state == 'present' else 'badge-alert' if state == 'missing' else 'badge-info' if state == 'conflict' else 'badge-unknown' }}">{{ state|video_state }}</span></td>
+                {% endfor %}
+                <td>
+                  {% if worker.status == 'potential_violation' %}<span class="badge badge-alert">Potential Violation</span>
+                  {% elif worker.status == 'compliant' %}<span class="badge badge-ok">Compliant</span>
+                  {% else %}<span class="badge badge-unknown">Unconfirmed</span>{% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="hint worker-note">A slot marked Unconfirmed had no usable positive or negative evidence. Conflict means both positive and negative boxes were associated in the same window.</p>
+    {% else %}
+      <div class="empty-state compact">
+        {{ icon('workers') }}
+        <p>No workers were tracked in the sampled frames.</p>
+        <p class="muted small">No worker-level assessment is possible for this video.</p>
+      </div>
+    {% endif %}
+  </section>
+
+  {% if notes %}
+    <section class="reason-banner" aria-label="Processing notes">
+      <span class="reason-icon">{{ icon('info') }}</span>
+      <div><strong>Processing notes</strong>
+        <ul>{% for note in notes %}<li>{{ note }}</li>{% endfor %}</ul>
+      </div>
+    </section>
+  {% endif %}
+
+  <p class="decision-note">{{ icon('info') }} SiteGuardVision provides AI-assisted decision support. Verify every event against the original footage and local safety rules; a clean run is not a compliance certificate.</p>
+{% endif %}
+{% endblock %}

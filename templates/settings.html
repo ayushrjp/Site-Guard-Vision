@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Settings — SiteGuardVision{% endblock %}
+{% block page_label %}Settings{% endblock %}
+{% block topbar_eyebrow %}Application configuration{% endblock %}
+{% block content %}
+<header class="page-head"><div><p class="eyebrow">Real settings · persistent SQLite</p><h2 class="page-title">Settings</h2><p class="page-subtitle">Changes here are saved and affect subsequent image analyses and assistant requests.</p></div></header>
+{% if request.args.get('saved') %}<div class="alert alert-success" role="status">{{ icon('check') }}<p>Settings saved and will be used for new analyses.</p></div>{% endif %}
+{% if message %}<div class="alert alert-success" role="status">{{ icon('check') }}<p>{{ message }}</p></div>{% endif %}
+{% if error %}<div class="alert alert-error" role="alert">{{ icon('alert') }}<p>{{ error }}</p></div>{% endif %}
+
+<div class="settings-grid">
+  <section class="card settings-card"><div class="card-head"><div><span class="card-kicker">{{ icon('target') }} Computer vision</span><h3 class="card-title">Analysis defaults</h3></div></div>
+    <form method="post" action="{{ url_for('settings_save_form') }}" class="settings-form">
+      <div class="field"><div class="field-head"><label class="label" for="setting-conf">PPE confidence threshold</label><output class="value-pill" for="setting-conf" data-output-for="setting-conf">{{ settings.conf }}</output></div><input type="range" id="setting-conf" name="conf" min="0.05" max="0.95" step="0.05" value="{{ settings.conf }}" /><p class="hint">This value is passed to <code>analyze_image()</code> when a form does not override it. Engine's frozen default remains 0.25.</p></div>
+      <div class="field"><label class="label" for="setting-imgsz">Image inference detail</label><select id="setting-imgsz" name="imgsz"><option value="640" {{ 'selected' if settings.imgsz == '640' }}>Fast · 640 px</option><option value="960" {{ 'selected' if settings.imgsz == '960' }}>Balanced · 960 px</option><option value="1280" {{ 'selected' if settings.imgsz == '1280' }}>Detailed · 1280 px</option></select><p class="hint">Person confidence remains governed by the audited engine floor and requested confidence.</p></div>
+      <div class="field"><label class="label" for="setting-model">Ollama chat model</label><select id="setting-model" name="ollama_model">
+        {% if settings.ollama_model not in status.ollama.installed_models %}<option value="{{ settings.ollama_model }}" selected>{{ settings.ollama_model }}{% if not status.ollama.reachable %} · configured, Ollama offline{% else %} · not currently installed{% endif %}</option>{% endif %}
+        {% for model in status.ollama.installed_models %}<option value="{{ model }}" {{ 'selected' if model == settings.ollama_model }}>{{ model }}{% if model == 'qwen2.5:3b' %} · recommended{% endif %}</option>{% endfor %}
+      </select><p class="hint">Default: <code>qwen2.5:3b</code>. The list is read from the running local Ollama service.</p></div>
+      <button class="btn btn-primary" type="submit">{{ icon('check') }} Save settings</button>
+    </form>
+  </section>
+
+  <div class="settings-stack">
+    <section class="card settings-card"><div class="card-head"><div><span class="card-kicker">{{ icon('cpu') }} Local service health</span><h3 class="card-title">Ollama &amp; RAG status</h3></div><button class="icon-btn" type="button" data-status-refresh title="Refresh status">{{ icon('refresh') }}</button></div>
+      <div class="health-list" data-health-list>
+        <div><span>Ollama service</span><strong>{{ 'Reachable' if status.ollama.reachable else 'Offline' }}</strong></div>
+        <div><span>Chat model · {{ settings.ollama_model }}</span><strong>{{ 'Installed' if status.ollama.chat_model_available else 'Missing' }}</strong></div>
+        <div><span>Embedding · {{ status.rag.embedding_model }}</span><strong>{{ 'Installed' if status.ollama.embed_model_available else 'Missing' }}</strong></div>
+        <div><span>Vector index</span><strong>{{ status.rag.chunks }} chunks</strong></div>
+      </div>
+      <p class="hint" data-health-message>{% if status.ollama.error %}{{ status.ollama.error }}{% elif status.mode == 'models_missing' %}Download missing models using <code>ollama pull qwen2.5:3b</code> and <code>ollama pull nomic-embed-text</code>.{% elif status.mode == 'offline' %}Image analysis works without Ollama. Start the Ollama app to enable assistant responses.{% else %}Mode: {{ status.mode|replace('_',' ') }}{% endif %}</p>
+      <div class="model-tags">{% for name in status.ollama.installed_models %}<span class="chip chip-muted">{{ name }}</span>{% else %}<span class="muted small">No installed models reported.</span>{% endfor %}</div>
+    </section>
+    <section class="card settings-card" id="documents"><div class="card-head"><div><span class="card-kicker">{{ icon('layers') }} Document management</span><h3 class="card-title">Safety knowledge base</h3></div></div>
+      <form class="document-upload-form" data-document-form>
+        <label class="dropzone dropzone-small" for="document-file"><span class="dropzone-icon">{{ icon('document') }}</span><span class="drop-title">Add PDF, TXT or Markdown</span><span class="drop-hint">Maximum 15 MB per document</span></label>
+        <input class="visually-hidden" type="file" id="document-file" name="file" accept=".pdf,.txt,.md" data-document-input />
+        <button class="btn btn-soft btn-block" type="submit" data-document-submit>{{ icon('upload') }} Upload &amp; index</button>
+        <p class="form-feedback" data-document-feedback aria-live="polite"></p>
+      </form>
+      <div class="document-manage-list" data-document-list>
+        {% set has_documents = documents.documents or documents.pending %}
+        {% for document in documents.documents %}
+        <div class="managed-document" data-document="{{ document.filename }}"><span class="document-icon">{{ icon('document') }}</span><span class="managed-document-copy"><strong>{{ document.filename }}</strong><small>{% if document.present %}{{ document.chunks }} chunks{% if document.pages %} · {{ document.pages }} pages{% endif %}{% else %}File missing on disk{% endif %}</small></span><button type="button" class="icon-btn danger-icon" data-delete-document="{{ document.filename }}" aria-label="Delete {{ document.filename }}">{{ icon('trash') }}</button></div>
+        {% endfor %}
+        {% for document in documents.pending %}
+        <div class="managed-document managed-document-pending" data-document="{{ document.filename }}"><span class="document-icon document-icon-pending">{{ icon('document') }}</span><span class="managed-document-copy"><strong>{{ document.filename }}</strong><small><span class="pending-tag">Not indexed</span> · saved {% if document.size >= 1024 %}{{ (document.size / 1024)|round(1) }} KB{% else %}{{ document.size }} B{% endif %}</small></span><button type="button" class="icon-btn danger-icon" data-delete-document="{{ document.filename }}" aria-label="Delete {{ document.filename }}">{{ icon('trash') }}</button></div>
+        {% endfor %}
+        {% if not has_documents %}<p class="muted small" data-empty-documents>No documents indexed yet. Add your site safety policy or handbook.</p>{% endif %}
+      </div>
+      {% if documents.pending %}<p class="notice-inline">{{ documents.pending|length }} saved document(s) need indexing. Start Ollama, then use Re-index all documents.</p>{% endif %}
+      <button class="btn btn-ghost btn-block" type="button" data-reindex>{{ icon('refresh') }} Re-index all documents</button>
+      <p class="hint">PDF pages are cited when text is available. Scanned/image-only PDFs need OCR before indexing.</p>
+    </section>
+  </div>
+</div>
+<p class="decision-note">{{ icon('info') }} System status is read from the local app, model files and Ollama API. The assistant is optional; PPE image analysis does not depend on it.</p>
+{% endblock %}

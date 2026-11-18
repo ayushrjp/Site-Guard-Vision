@@ -1,0 +1,158 @@
+test_answer_contains_sources_and_timings (test_rag_assistant.TestAssistantWithoutNetwork.test_answer_contains_sources_and_timings) ... ok
+test_follow_up_question_includes_conversation_history (test_rag_assistant.TestAssistantWithoutNetwork.test_follow_up_question_includes_conversation_history) ... ok
+test_general_question_without_documents_uses_llm (test_rag_assistant.TestAssistantWithoutNetwork.test_general_question_without_documents_uses_llm) ... ok
+test_image_question_without_analysis_is_explained (test_rag_assistant.TestAssistantWithoutNetwork.test_image_question_without_analysis_is_explained) ... ok
+test_offline_blocks_chat_but_keeps_image_facts (test_rag_assistant.TestAssistantWithoutNetwork.test_offline_blocks_chat_but_keeps_image_facts) ... ok
+test_chunk_text_respects_chunk_limit_and_overlap (test_rag_assistant.TestDocumentText.test_chunk_text_respects_chunk_limit_and_overlap) ... ok
+test_clean_text_removes_control_chars_and_collapses_blank_lines (test_rag_assistant.TestDocumentText.test_clean_text_removes_control_chars_and_collapses_blank_lines) ... ok
+test_analysis_facts_use_structured_worker_data (test_rag_assistant.TestGroundingHelpers.test_analysis_facts_use_structured_worker_data) ... ok
+test_history_is_included_before_the_current_question (test_rag_assistant.TestGroundingHelpers.test_history_is_included_before_the_current_question) ... ok
+test_image_question_detection (test_rag_assistant.TestGroundingHelpers.test_image_question_detection) ... ok
+test_insufficient_fallback_is_exact (test_rag_assistant.TestGroundingHelpers.test_insufficient_fallback_is_exact) ... ok
+test_offline_image_question_gets_backend_only_summary (test_rag_assistant.TestGroundingHelpers.test_offline_image_question_gets_backend_only_summary) ... ok
+test_product_facts_included_for_architecture_question (test_rag_assistant.TestGroundingHelpers.test_product_facts_included_for_architecture_question) ... ok
+test_prompt_separates_document_context_and_image_facts (test_rag_assistant.TestGroundingHelpers.test_prompt_separates_document_context_and_image_facts) ... ok
+test_siteguardvision_question_detection (test_rag_assistant.TestGroundingHelpers.test_siteguardvision_question_detection) ... ok
+test_system_prompt_covers_conversational_and_architecture_rules (test_rag_assistant.TestGroundingHelpers.test_system_prompt_covers_conversational_and_architecture_rules) ... ok
+test_chat_rejects_empty_input (test_rag_assistant.TestNewRoutes.test_chat_rejects_empty_input) ... ok
+test_document_upload_rejects_wrong_extension (test_rag_assistant.TestNewRoutes.test_document_upload_rejects_wrong_extension) ... ok
+test_navigation_pages_render (test_rag_assistant.TestNewRoutes.test_navigation_pages_render) ... ok
+test_model_matching_allows_implicit_latest (test_rag_assistant.TestOllamaService.test_model_matching_allows_implicit_latest) ... ok
+test_status_and_chat_use_installed_local_model (test_rag_assistant.TestOllamaService.test_status_and_chat_use_installed_local_model) ... ok
+test_save_analysis_and_stats (test_rag_assistant.TestStorage.test_save_analysis_and_stats) ... ok
+test_settings_validate_and_persist (test_rag_assistant.TestStorage.test_settings_validate_and_persist) ... ok
+test_complete_positive_evidence_is_clear (test_siteguard.TestAssessment.test_complete_positive_evidence_is_clear) ... ok
+test_explicit_missing_ppe_is_potential_violation (test_siteguard.TestAssessment.test_explicit_missing_ppe_is_potential_violation) ... ok
+test_missing_person_detector_downgrades_to_insufficient (test_siteguard.TestAssessment.test_missing_person_detector_downgrades_to_insufficient) ... ok
+test_no_people_is_never_compliance (test_siteguard.TestAssessment.test_no_people_is_never_compliance) ... ok
+test_people_without_ppe_evidence_is_insufficient (test_siteguard.TestAssessment.test_people_without_ppe_evidence_is_insufficient) ... ok
+test_unassigned_missing_ppe_still_flags (test_siteguard.TestAssessment.test_unassigned_missing_ppe_still_flags) ... ok
+test_corrupt_image_rejected_without_crash (test_siteguard.TestFlaskRoutes.test_corrupt_image_rejected_without_crash) ... ok
+test_health (test_siteguard.TestFlaskRoutes.test_health) ... ok
+test_home_renders_upload_and_samples (test_siteguard.TestFlaskRoutes.test_home_renders_upload_and_samples) ... ok
+test_missing_file_selection (test_siteguard.TestFlaskRoutes.test_missing_file_selection) ... ok
+test_oversized_upload_returns_413 (test_siteguard.TestFlaskRoutes.test_oversized_upload_returns_413) ... ok
+test_rendered_status_matches_backend_status (test_siteguard.TestFlaskRoutes.test_rendered_status_matches_backend_status)
+The template must render result.assessment_status verbatim. ... 2026-11-18 11:00:36,577 INFO [server] Analyzed ppe_0009_jpg.rf.dd2127438beac3f9409c6f83dc0a0c7b.jpg | people=0 hardhats=0 no_hardhats=0 vests=0 no_vests=0 status=potential_violation
+2026-11-18 11:00:36,770 INFO [server] Analyzed ppe_0009_jpg.rf.dd2127438beac3f9409c6f83dc0a0c7b.jpg | people=0 hardhats=0 no_hardhats=0 vests=0 no_vests=0 status=no_violation_detected
+2026-11-18 11:00:36,835 INFO [server] Analyzed ppe_0009_jpg.rf.dd2127438beac3f9409c6f83dc0a0c7b.jpg | people=0 hardhats=0 no_hardhats=0 vests=0 no_vests=0 status=insufficient_evidence
+ok
+test_sample_file_served (test_siteguard.TestFlaskRoutes.test_sample_file_served) ... ok
+test_sample_path_traversal_rejected (test_siteguard.TestFlaskRoutes.test_sample_path_traversal_rejected) ... ok
+test_security_headers (test_siteguard.TestFlaskRoutes.test_security_headers) ... ok
+test_unknown_sample_returns_404 (test_siteguard.TestFlaskRoutes.test_unknown_sample_returns_404) ... ok
+test_unreadable_samples_are_not_offered (test_siteguard.TestFlaskRoutes.test_unreadable_samples_are_not_offered)
+A mislabelled or corrupt sample must not be shown as a sample card. ... ok
+test_unsupported_extension_rejected (test_siteguard.TestFlaskRoutes.test_unsupported_extension_rejected) ... ok
+test_uploaded_file_is_removed_after_analysis (test_siteguard.TestFlaskRoutes.test_uploaded_file_is_removed_after_analysis)
+Successful analysis must not retain the uploaded original on disk. ... 2026-11-18 11:00:37,642 INFO [server] Analyzed temporary-upload.jpg | people=0 hardhats=0 no_hardhats=0 vests=0 no_vests=0 status=insufficient_evidence
+ok
+test_distant_ppe_is_not_assigned (test_siteguard.TestGeometryAndAssociation.test_distant_ppe_is_not_assigned) ... ok
+test_hat_overlapping_two_workers_is_assigned_once (test_siteguard.TestGeometryAndAssociation.test_hat_overlapping_two_workers_is_assigned_once) ... ok
+test_head_and_torso_regions (test_siteguard.TestGeometryAndAssociation.test_head_and_torso_regions) ... ok
+test_low_confidence_duplicate_cannot_take_confident_slot (test_siteguard.TestGeometryAndAssociation.test_low_confidence_duplicate_cannot_take_confident_slot) ... ok
+test_one_ppe_cannot_fill_two_worker_slots (test_siteguard.TestGeometryAndAssociation.test_one_ppe_cannot_fill_two_worker_slots) ... ok
+test_opposite_categories_are_never_duplicates (test_siteguard.TestGeometryAndAssociation.test_opposite_categories_are_never_duplicates) ... ok
+test_same_category_duplicate_keeps_confident_box (test_siteguard.TestGeometryAndAssociation.test_same_category_duplicate_keeps_confident_box) ... ok
+test_two_hats_go_to_two_workers (test_siteguard.TestGeometryAndAssociation.test_two_hats_go_to_two_workers) ... ok
+test_known_ppe_labels (test_siteguard.TestLabelMapping.test_known_ppe_labels) ... ok
+test_present_and_missing_states (test_siteguard.TestPersonRecords.test_present_and_missing_states) ... ok
+test_unknown_ppe_is_not_missing (test_siteguard.TestPersonRecords.test_unknown_ppe_is_not_missing) ... ok
+2026-11-18 11:00:38,412 INFO [infer_engine] PPE model loaded in 625.6 ms
+2026-11-18 11:00:38,576 INFO [infer_engine] Person model loaded in 162.2 ms
+test_01_clear_scene (test_siteguard.TestRealInference.test_01_clear_scene) ... ok
+test_02_missing_hardhats_flagged (test_siteguard.TestRealInference.test_02_missing_hardhats_flagged) ... ok
+test_03_missing_vests_flagged (test_siteguard.TestRealInference.test_03_missing_vests_flagged) ... ok
+test_04_blank_image_is_insufficient (test_siteguard.TestRealInference.test_04_blank_image_is_insufficient) ... ok
+test_05_partial_evidence_is_uncertain (test_siteguard.TestRealInference.test_05_partial_evidence_is_uncertain) ... ok
+test_06_multiple_workers_no_duplicate_assignment (test_siteguard.TestRealInference.test_06_multiple_workers_no_duplicate_assignment) ... ok
+test_07_cpu_inference_metadata (test_siteguard.TestRealInference.test_07_cpu_inference_metadata) ... ok
+test_08_missing_image_reports_error (test_siteguard.TestRealInference.test_08_missing_image_reports_error) ... ok
+test_09_invalid_person_confidence_is_clamped (test_siteguard.TestRealInference.test_09_invalid_person_confidence_is_clamped) ... ok
+test_10_uncertain_vest_is_not_forced_present (test_siteguard.TestRealInference.test_10_uncertain_vest_is_not_forced_present) ... ok
+test_queued_job_reports_progress_and_completes (test_video_processing.TestBackgroundVideoJob.test_queued_job_reports_progress_and_completes) ... [mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+
+Failed to load OpenH264 library: openh264-2.5.0-win64.dll
+	Please check environment and/or download library: https://github.com/cisco/openh264/releases
+
+[libopenh264 @ 00000210caea8280] Unable to create encoder
+[ERROR:0@0.821] global cap_ffmpeg_impl.hpp:3568 open Could not open codec libopenh264, error: Unspecified error (-1313558101)
+[ERROR:0@0.822] global cap_ffmpeg_impl.hpp:3585 open VIDEOIO/FFMPEG: Failed to initialize VideoWriter
+ok
+test_detection_outside_worker_is_unassigned (test_video_processing.TestPpeAssociation.test_detection_outside_worker_is_unassigned) ... ok
+test_frame_status_is_cautious (test_video_processing.TestPpeAssociation.test_frame_status_is_cautious) ... ok
+test_hat_vest_and_extra_ppe_attach_to_one_worker (test_video_processing.TestPpeAssociation.test_hat_vest_and_extra_ppe_attach_to_one_worker) ... ok
+test_two_workers_keep_separate_hats (test_video_processing.TestPpeAssociation.test_two_workers_keep_separate_hats) ... ok
+test_real_video_produces_playable_annotated_output (test_video_processing.TestRealVideoProcessing.test_real_video_produces_playable_annotated_output) ... [libopenh264 @ 00000210cae37f80] Unable to create encoder
+[ERROR:1@8.098] global cap_ffmpeg_impl.hpp:3568 open Could not open codec libopenh264, error: Unspecified error (-1313558101)
+[ERROR:1@8.098] global cap_ffmpeg_impl.hpp:3585 open VIDEOIO/FFMPEG: Failed to initialize VideoWriter
+ok
+test_corrupt_video_probe_fails_cleanly (test_video_processing.TestSampleLibrary.test_corrupt_video_probe_fails_cleanly) ... ok
+test_discovery_skips_corrupt_and_non_video_files (test_video_processing.TestSampleLibrary.test_discovery_skips_corrupt_and_non_video_files) ... ok
+test_ids_are_stable_and_path_free (test_video_processing.TestSampleLibrary.test_ids_are_stable_and_path_free) ... ok
+test_metadata_comes_from_opencv (test_video_processing.TestSampleLibrary.test_metadata_comes_from_opencv) ... ok
+test_public_sample_has_no_server_path (test_video_processing.TestSampleLibrary.test_public_sample_has_no_server_path) ... ok
+test_thumbnail_is_created_and_cached (test_video_processing.TestSampleLibrary.test_thumbnail_is_created_and_cached) ... ok
+test_unknown_id_is_rejected (test_video_processing.TestSampleLibrary.test_unknown_id_is_rejected) ... ok
+test_4k_60fps_is_not_processed_frame_by_frame (test_video_processing.TestSamplingPlan.test_4k_60fps_is_not_processed_frame_by_frame) ... ok
+test_allowed_image_size_is_kept (test_video_processing.TestSamplingPlan.test_allowed_image_size_is_kept) ... ok
+test_high_frame_rate_is_capped_by_budget (test_video_processing.TestSamplingPlan.test_high_frame_rate_is_capped_by_budget) ... ok
+test_invalid_frame_rate_is_rejected (test_video_processing.TestSamplingPlan.test_invalid_frame_rate_is_rejected) ... ok
+test_output_dimensions_preserve_aspect_and_even_size (test_video_processing.TestSamplingPlan.test_output_dimensions_preserve_aspect_and_even_size) ... ok
+test_settings_payload_is_clamped (test_video_processing.TestSamplingPlan.test_settings_payload_is_clamped) ... ok
+test_two_fps_plan_preserves_duration (test_video_processing.TestSamplingPlan.test_two_fps_plan_preserves_duration) ... ok
+test_absent_positive_ppe_is_not_an_event (test_video_processing.TestTemporalVerification.test_absent_positive_ppe_is_not_an_event)
+No POSITIVE box alone must never be reported as a violation. ... ok
+test_conflicting_evidence_is_not_compliant (test_video_processing.TestTemporalVerification.test_conflicting_evidence_is_not_compliant) ... ok
+test_cooldown_merges_runs_only_after_both_qualify (test_video_processing.TestTemporalVerification.test_cooldown_merges_runs_only_after_both_qualify) ... ok
+test_low_support_ratio_blocks_event (test_video_processing.TestTemporalVerification.test_low_support_ratio_blocks_event) ... ok
+test_persistent_negative_evidence_creates_one_event (test_video_processing.TestTemporalVerification.test_persistent_negative_evidence_creates_one_event) ... ok
+test_present_hat_and_vest_mark_worker_compliant (test_video_processing.TestTemporalVerification.test_present_hat_and_vest_mark_worker_compliant) ... ok
+test_summary_counts_are_derived_from_real_records (test_video_processing.TestTemporalVerification.test_summary_counts_are_derived_from_real_records) ... ok
+test_too_few_negative_observations_do_not_create_event (test_video_processing.TestTemporalVerification.test_too_few_negative_observations_do_not_create_event) ... ok
+test_bad_extension_is_rejected (test_video_processing.TestUploadsAndJobStorage.test_bad_extension_is_rejected) ... ok
+test_corrupt_video_is_rejected_and_cleaned_up (test_video_processing.TestUploadsAndJobStorage.test_corrupt_video_is_rejected_and_cleaned_up) ... ok
+test_job_lifecycle_and_events_round_trip (test_video_processing.TestUploadsAndJobStorage.test_job_lifecycle_and_events_round_trip) ... ok
+test_mime_validation (test_video_processing.TestUploadsAndJobStorage.test_mime_validation) ... ok
+test_stale_jobs_are_failed_on_startup (test_video_processing.TestUploadsAndJobStorage.test_stale_jobs_are_failed_on_startup) ... ok
+test_upload_id_traversal_is_rejected (test_video_processing.TestUploadsAndJobStorage.test_upload_id_traversal_is_rejected) ... ok
+test_valid_upload_is_stored_and_probed (test_video_processing.TestUploadsAndJobStorage.test_valid_upload_is_stored_and_probed) ... ok
+test_all_health_check_classes_map (test_video_processing.TestVideoLabelMapping.test_all_health_check_classes_map) ... ok
+test_unknown_label_is_other (test_video_processing.TestVideoLabelMapping.test_unknown_label_is_other) ... ok
+test_analyze_endpoint_validates_source (test_video_processing.TestVideoRoutes.test_analyze_endpoint_validates_source) ... ok
+test_annotated_and_source_streams (test_video_processing.TestVideoRoutes.test_annotated_and_source_streams) ... ok
+test_bad_sample_ids_return_404 (test_video_processing.TestVideoRoutes.test_bad_sample_ids_return_404) ... ok
+test_completed_result_dashboard_renders_real_values (test_video_processing.TestVideoRoutes.test_completed_result_dashboard_renders_real_values) ... ok
+test_missing_or_malformed_jobs_return_404 (test_video_processing.TestVideoRoutes.test_missing_or_malformed_jobs_return_404) ... ok
+test_overview_lists_jobs (test_video_processing.TestVideoRoutes.test_overview_lists_jobs) ... ok
+test_result_apis_return_persisted_records (test_video_processing.TestVideoRoutes.test_result_apis_return_persisted_records) ... ok
+test_sample_metadata_and_thumbnail (test_video_processing.TestVideoRoutes.test_sample_metadata_and_thumbnail) ... ok
+test_sample_stream_supports_range_requests (test_video_processing.TestVideoRoutes.test_sample_stream_supports_range_requests) ... ok
+test_samples_api_never_exposes_paths (test_video_processing.TestVideoRoutes.test_samples_api_never_exposes_paths) ... ok
+test_upload_endpoint_accepts_real_video (test_video_processing.TestVideoRoutes.test_upload_endpoint_accepts_real_video) ... ok
+test_upload_endpoint_rejects_bad_files (test_video_processing.TestVideoRoutes.test_upload_endpoint_rejects_bad_files) ... ok
+test_workspace_renders_samples_and_upload (test_video_processing.TestVideoRoutes.test_workspace_renders_samples_and_upload) ... ok
+
+----------------------------------------------------------------------
+Ran 113 tests in 56.796s
+
+OK
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 00000210cadf0a80] moov atom not found

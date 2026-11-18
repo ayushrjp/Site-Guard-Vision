@@ -1,0 +1,18 @@
+scope,class,metric,delta_640_minus_960,ci95_low,ci95_high,bootstrap_replicates,replicates_with_class_gt,method
+PPE_macro,PPE_macro,precision,0.04354624112180515,-0.01264621410942496,0.10148555713897958,2000,,paired image-cluster percentile bootstrap
+PPE_macro,PPE_macro,recall,0.17187768359928962,0.11095802566158526,0.2363932809869359,2000,,paired image-cluster percentile bootstrap
+PPE_macro,PPE_macro,f1,0.14098407523376028,0.09320699277433368,0.1983399559908694,2000,,paired image-cluster percentile bootstrap
+PPE_macro,PPE_macro,AP50,0.09854257728615187,0.048250938363989165,0.15516357899365227,2000,,paired image-cluster percentile bootstrap
+PPE_macro,PPE_macro,mAP50_95,0.11070152372903604,0.08055736563086455,0.1406487360991673,2000,,paired image-cluster percentile bootstrap
+class,Helmet,precision,0.13387636251844556,0.08161580845278261,0.18819842714900137,2000,2000,paired image-cluster percentile bootstrap
+class,Helmet,recall,0.11250791667043071,0.05376163671790437,0.17157389029231315,2000,2000,paired image-cluster percentile bootstrap
+class,Helmet,f1,0.12435252827697864,0.07583883236565836,0.17295199729694063,2000,2000,paired image-cluster percentile bootstrap
+class,No Helmet,precision,0.06579631339713315,-0.07501893939393935,0.25706845238095166,2000,2000,paired image-cluster percentile bootstrap
+class,No Helmet,recall,0.08858098188281434,-0.08333333333333337,0.2857142857142857,2000,2000,paired image-cluster percentile bootstrap
+class,No Helmet,f1,0.08695097483512179,-0.02936003861003865,0.2527753206545775,2000,2000,paired image-cluster percentile bootstrap
+class,No Vest,precision,-0.008517757652399023,-0.13336538461538458,0.10016447764609536,2000,2000,paired image-cluster percentile bootstrap
+class,No Vest,recall,0.28285475041063535,0.15490249187432287,0.4355058651026392,2000,2000,paired image-cluster percentile bootstrap
+class,No Vest,f1,0.22421823712177025,0.10754204129204127,0.36559910179377747,2000,2000,paired image-cluster percentile bootstrap
+class,Safety Vest,precision,-0.016969953775959112,-0.06761211077678421,0.025081934375580914,2000,2000,paired image-cluster percentile bootstrap
+class,Safety Vest,recall,0.20356708543327795,0.12173619271445354,0.29167427007299274,2000,2000,paired image-cluster percentile bootstrap
+class,Safety Vest,f1,0.12841456070117033,0.07443739603479699,0.18594045769276568,2000,2000,paired image-cluster percentile bootstrap

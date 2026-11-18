@@ -1,0 +1,517 @@
+[
+    {
+        "video": "13569683-hd_1920_1080_60fps.mp4",
+        "resolution": [
+            1920,
+            1080
+        ],
+        "fps": 59.94,
+        "total_frames": 930,
+        "person_count": 2,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.954
+            },
+            {
+                "class": "person",
+                "confidence": 0.91
+            }
+        ],
+        "ppe_count": 3,
+        "ppe_detections": [
+            {
+                "class": "Hardhat",
+                "confidence": 0.432
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.357
+            },
+            {
+                "class": "Safety Vest",
+                "confidence": 0.259
+            }
+        ]
+    },
+    {
+        "video": "13753913_3840_2160_50fps.mp4",
+        "resolution": [
+            3840,
+            2160
+        ],
+        "fps": 50.0,
+        "total_frames": 566,
+        "person_count": 3,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.884
+            },
+            {
+                "class": "person",
+                "confidence": 0.799
+            },
+            {
+                "class": "bird",
+                "confidence": 0.398
+            }
+        ],
+        "ppe_count": 2,
+        "ppe_detections": [
+            {
+                "class": "Hardhat",
+                "confidence": 0.448
+            },
+            {
+                "class": "Ladder",
+                "confidence": 0.371
+            }
+        ]
+    },
+    {
+        "video": "14626386_2160_3840_30fps.mp4",
+        "resolution": [
+            2160,
+            3840
+        ],
+        "fps": 29.97,
+        "total_frames": 594,
+        "person_count": 1,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.712
+            }
+        ],
+        "ppe_count": 1,
+        "ppe_detections": [
+            {
+                "class": "Hardhat",
+                "confidence": 0.785
+            }
+        ]
+    },
+    {
+        "video": "16533594_1920_1080_25fps.mp4",
+        "resolution": [
+            1920,
+            1080
+        ],
+        "fps": 25.0,
+        "total_frames": 373,
+        "person_count": 3,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.917
+            },
+            {
+                "class": "car",
+                "confidence": 0.871
+            },
+            {
+                "class": "person",
+                "confidence": 0.846
+            }
+        ],
+        "ppe_count": 5,
+        "ppe_detections": [
+            {
+                "class": "Safety Vest",
+                "confidence": 0.668
+            },
+            {
+                "class": "Safety Cone",
+                "confidence": 0.591
+            },
+            {
+                "class": "Safety Vest",
+                "confidence": 0.36
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.295
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.275
+            }
+        ]
+    },
+    {
+        "video": "19832490-hd_1920_1080_25fps.mp4",
+        "resolution": [
+            1920,
+            1080
+        ],
+        "fps": 25.0,
+        "total_frames": 144,
+        "person_count": 8,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.809
+            },
+            {
+                "class": "person",
+                "confidence": 0.722
+            },
+            {
+                "class": "person",
+                "confidence": 0.711
+            },
+            {
+                "class": "sheep",
+                "confidence": 0.573
+            },
+            {
+                "class": "person",
+                "confidence": 0.463
+            },
+            {
+                "class": "person",
+                "confidence": 0.393
+            },
+            {
+                "class": "person",
+                "confidence": 0.391
+            },
+            {
+                "class": "person",
+                "confidence": 0.337
+            }
+        ],
+        "ppe_count": 8,
+        "ppe_detections": [
+            {
+                "class": "Hardhat",
+                "confidence": 0.789
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.758
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.698
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.571
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.454
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.414
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.313
+            },
+            {
+                "class": "NO-Safety Vest",
+                "confidence": 0.312
+            }
+        ]
+    },
+    {
+        "video": "5434218-hd_1920_1080_24fps.mp4",
+        "resolution": [
+            1920,
+            1080
+        ],
+        "fps": 23.98,
+        "total_frames": 167,
+        "person_count": 1,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.846
+            }
+        ],
+        "ppe_count": 1,
+        "ppe_detections": [
+            {
+                "class": "Safety Vest",
+                "confidence": 0.849
+            }
+        ]
+    },
+    {
+        "video": "5434223-hd_1920_1080_24fps.mp4",
+        "resolution": [
+            1920,
+            1080
+        ],
+        "fps": 23.98,
+        "total_frames": 577,
+        "person_count": 2,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.785
+            },
+            {
+                "class": "person",
+                "confidence": 0.68
+            }
+        ],
+        "ppe_count": 3,
+        "ppe_detections": [
+            {
+                "class": "Hardhat",
+                "confidence": 0.686
+            },
+            {
+                "class": "Safety Vest",
+                "confidence": 0.612
+            },
+            {
+                "class": "Safety Vest",
+                "confidence": 0.415
+            }
+        ]
+    },
+    {
+        "video": "8486681-uhd_3840_2160_30fps.mp4",
+        "resolution": [
+            2560,
+            1440
+        ],
+        "fps": 30.0,
+        "total_frames": 289,
+        "person_count": 1,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.751
+            }
+        ],
+        "ppe_count": 2,
+        "ppe_detections": [
+            {
+                "class": "Safety Vest",
+                "confidence": 0.879
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.62
+            }
+        ]
+    },
+    {
+        "video": "8964930-uhd_3840_2160_25fps.mp4",
+        "resolution": [
+            3840,
+            2160
+        ],
+        "fps": 25.0,
+        "total_frames": 201,
+        "person_count": 2,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.794
+            },
+            {
+                "class": "person",
+                "confidence": 0.782
+            }
+        ],
+        "ppe_count": 2,
+        "ppe_detections": [
+            {
+                "class": "Hardhat",
+                "confidence": 0.567
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.436
+            }
+        ]
+    },
+    {
+        "video": "8965526-uhd_2160_3840_25fps.mp4",
+        "resolution": [
+            2160,
+            3840
+        ],
+        "fps": 25.0,
+        "total_frames": 315,
+        "person_count": 2,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.917
+            },
+            {
+                "class": "person",
+                "confidence": 0.883
+            }
+        ],
+        "ppe_count": 4,
+        "ppe_detections": [
+            {
+                "class": "Hardhat",
+                "confidence": 0.544
+            },
+            {
+                "class": "Safety Vest",
+                "confidence": 0.427
+            },
+            {
+                "class": "Safety Vest",
+                "confidence": 0.399
+            },
+            {
+                "class": "Hardhat",
+                "confidence": 0.385
+            }
+        ]
+    },
+    {
+        "video": "Recording 2026-11-18 093655.mp4",
+        "resolution": [
+            1918,
+            998
+        ],
+        "fps": 30.0,
+        "total_frames": 505,
+        "person_count": 3,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.907
+            },
+            {
+                "class": "person",
+                "confidence": 0.883
+            },
+            {
+                "class": "person",
+                "confidence": 0.748
+            }
+        ],
+        "ppe_count": 3,
+        "ppe_detections": [
+            {
+                "class": "NO-Hardhat",
+                "confidence": 0.715
+            },
+            {
+                "class": "NO-Hardhat",
+                "confidence": 0.55
+            },
+            {
+                "class": "NO-Hardhat",
+                "confidence": 0.292
+            }
+        ]
+    },
+    {
+        "video": "Recording 2026-11-18 093828.mp4",
+        "resolution": [
+            1918,
+            946
+        ],
+        "fps": 30.0,
+        "total_frames": 270,
+        "person_count": 8,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.907
+            },
+            {
+                "class": "person",
+                "confidence": 0.839
+            },
+            {
+                "class": "person",
+                "confidence": 0.779
+            },
+            {
+                "class": "person",
+                "confidence": 0.774
+            },
+            {
+                "class": "person",
+                "confidence": 0.6
+            },
+            {
+                "class": "person",
+                "confidence": 0.535
+            },
+            {
+                "class": "person",
+                "confidence": 0.472
+            },
+            {
+                "class": "person",
+                "confidence": 0.366
+            }
+        ],
+        "ppe_count": 4,
+        "ppe_detections": [
+            {
+                "class": "NO-Hardhat",
+                "confidence": 0.581
+            },
+            {
+                "class": "NO-Hardhat",
+                "confidence": 0.495
+            },
+            {
+                "class": "NO-Hardhat",
+                "confidence": 0.41
+            },
+            {
+                "class": "NO-Hardhat",
+                "confidence": 0.292
+            }
+        ]
+    },
+    {
+        "video": "Recording 2026-11-18 093935.mp4",
+        "resolution": [
+            1906,
+            978
+        ],
+        "fps": 30.0,
+        "total_frames": 437,
+        "person_count": 4,
+        "person_detections": [
+            {
+                "class": "person",
+                "confidence": 0.831
+            },
+            {
+                "class": "person",
+                "confidence": 0.757
+            },
+            {
+                "class": "person",
+                "confidence": 0.574
+            },
+            {
+                "class": "person",
+                "confidence": 0.263
+            }
+        ],
+        "ppe_count": 2,
+        "ppe_detections": [
+            {
+                "class": "Hardhat",
+                "confidence": 0.528
+            },
+            {
+                "class": "NO-Hardhat",
+                "confidence": 0.399
+            }
+        ]
+    }
+]

@@ -1,0 +1,2089 @@
+{
+  "generated_at": "2026-11-18T04:57:00+00:00",
+  "settings": {
+    "sample_fps": 1.0,
+    "max_sampled_frames": 8,
+    "imgsz": 640,
+    "conf": 0.25,
+    "max_output_width": 1280,
+    "min_observations": 2,
+    "min_ratio": 0.5,
+    "cooldown_s": 5.0
+  },
+  "sampled_per_video": "up to 8 frames at 1 fps",
+  "video_count": 13,
+  "ok_count": 13,
+  "results": [
+    {
+      "video": "13569683-hd_1920_1080_60fps.mp4",
+      "ok": true,
+      "source": {
+        "filename": "13569683-hd_1920_1080_60fps.mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": 59.94,
+        "frame_count": 930,
+        "duration_s": 15.515
+      },
+      "processing": {
+        "stride": 117,
+        "sample_fps": 0.512,
+        "output_fps": 0.512,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 30.83,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "01_13569683-hd_1920_1080_60fps.mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": 0.512,
+        "frame_count": 8,
+        "size_bytes": 3812774,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 7,
+        "compliant_workers": 0,
+        "violation_workers": 0,
+        "unconfirmed_workers": 7,
+        "event_count": 0,
+        "events_by_category": {}
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 9.76,
+          "frames_observed": 6,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "present",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.7165,
+            "vest": 0.5485,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 2,
+          "first_seen_s": 0.0,
+          "last_seen_s": 9.76,
+          "frames_observed": 5,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "present",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": 0.4286,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 3,
+          "first_seen_s": 0.0,
+          "last_seen_s": 9.76,
+          "frames_observed": 2,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 4,
+          "first_seen_s": 0.0,
+          "last_seen_s": 9.76,
+          "frames_observed": 2,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 5,
+          "first_seen_s": 0.0,
+          "last_seen_s": 11.71,
+          "frames_observed": 2,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 6,
+          "first_seen_s": 0.0,
+          "last_seen_s": 11.71,
+          "frames_observed": 2,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": 0.417,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 7,
+          "first_seen_s": 5.86,
+          "last_seen_s": 5.86,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        }
+      ],
+      "events": [],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 31.27
+    },
+    {
+      "video": "13753913_3840_2160_50fps.mp4",
+      "ok": true,
+      "source": {
+        "filename": "13753913_3840_2160_50fps.mp4",
+        "width": 3840,
+        "height": 2160,
+        "fps": 50.0,
+        "frame_count": 566,
+        "duration_s": 11.32
+      },
+      "processing": {
+        "stride": 71,
+        "sample_fps": 0.704,
+        "output_fps": 0.704,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 19.34,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "02_13753913_3840_2160_50fps.mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": 0.704,
+        "frame_count": 8,
+        "size_bytes": 2777686,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 5,
+        "compliant_workers": 0,
+        "violation_workers": 0,
+        "unconfirmed_workers": 5,
+        "event_count": 0,
+        "events_by_category": {}
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 2.84,
+          "frames_observed": 3,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5024,
+            "vest": 0.2957,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 2,
+          "first_seen_s": 0.0,
+          "last_seen_s": 5.68,
+          "frames_observed": 3,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5006,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 3,
+          "first_seen_s": 4.26,
+          "last_seen_s": 4.26,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5796,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 4,
+          "first_seen_s": 7.1,
+          "last_seen_s": 7.1,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.4932,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 5,
+          "first_seen_s": 8.52,
+          "last_seen_s": 8.52,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5721,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        }
+      ],
+      "events": [],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 20.37
+    },
+    {
+      "video": "14626386_2160_3840_30fps.mp4",
+      "ok": true,
+      "source": {
+        "filename": "14626386_2160_3840_30fps.mp4",
+        "width": 2160,
+        "height": 3840,
+        "fps": 29.97,
+        "frame_count": 594,
+        "duration_s": 19.82
+      },
+      "processing": {
+        "stride": 75,
+        "sample_fps": 0.4,
+        "output_fps": 0.4,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 21.02,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "03_14626386_2160_3840_30fps.mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 0.4,
+        "frame_count": 8,
+        "size_bytes": 4858391,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 9,
+        "compliant_workers": 0,
+        "violation_workers": 0,
+        "unconfirmed_workers": 9,
+        "event_count": 0,
+        "events_by_category": {}
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 15.02,
+          "frames_observed": 4,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.4818,
+            "vest": 0.3525,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 2,
+          "first_seen_s": 0.0,
+          "last_seen_s": 15.02,
+          "frames_observed": 2,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.6576,
+            "vest": 0.2507,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 3,
+          "first_seen_s": 7.51,
+          "last_seen_s": 17.52,
+          "frames_observed": 4,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.7331,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 4,
+          "first_seen_s": 15.02,
+          "last_seen_s": 15.02,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 5,
+          "first_seen_s": 15.02,
+          "last_seen_s": 15.02,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 6,
+          "first_seen_s": 15.02,
+          "last_seen_s": 15.02,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 7,
+          "first_seen_s": 15.02,
+          "last_seen_s": 15.02,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 8,
+          "first_seen_s": 17.52,
+          "last_seen_s": 17.52,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.3744,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 9,
+          "first_seen_s": 17.52,
+          "last_seen_s": 17.52,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        }
+      ],
+      "events": [],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 22.18
+    },
+    {
+      "video": "16533594_1920_1080_25fps.mp4",
+      "ok": true,
+      "source": {
+        "filename": "16533594_1920_1080_25fps.mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": 25.0,
+        "frame_count": 373,
+        "duration_s": 14.92
+      },
+      "processing": {
+        "stride": 47,
+        "sample_fps": 0.532,
+        "output_fps": 0.532,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 14.27,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "04_16533594_1920_1080_25fps.mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": 0.532,
+        "frame_count": 8,
+        "size_bytes": 3668434,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 2,
+        "compliant_workers": 2,
+        "violation_workers": 0,
+        "unconfirmed_workers": 0,
+        "event_count": 0,
+        "events_by_category": {}
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 13.16,
+          "frames_observed": 8,
+          "status": "compliant",
+          "states": {
+            "helmet": "present",
+            "vest": "present",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.4186,
+            "vest": 0.4566,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 2,
+          "first_seen_s": 3.76,
+          "last_seen_s": 13.16,
+          "frames_observed": 4,
+          "status": "compliant",
+          "states": {
+            "helmet": "present",
+            "vest": "present",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5534,
+            "vest": 0.5542,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        }
+      ],
+      "events": [],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 14.58
+    },
+    {
+      "video": "19832490-hd_1920_1080_25fps.mp4",
+      "ok": true,
+      "source": {
+        "filename": "19832490-hd_1920_1080_25fps.mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": 25.0,
+        "frame_count": 144,
+        "duration_s": 5.76
+      },
+      "processing": {
+        "stride": 25,
+        "sample_fps": 1.0,
+        "output_fps": 1.0,
+        "estimated_frames": 6,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 6,
+        "corrupt_frames": 0,
+        "elapsed_s": 9.9,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "05_19832490-hd_1920_1080_25fps.mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": 1.0,
+        "frame_count": 6,
+        "size_bytes": 575969,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 7,
+        "compliant_workers": 0,
+        "violation_workers": 1,
+        "unconfirmed_workers": 6,
+        "event_count": 1,
+        "events_by_category": {
+          "vest": 1
+        }
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 5.0,
+          "frames_observed": 6,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.8115,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 2,
+          "first_seen_s": 0.0,
+          "last_seen_s": 5.0,
+          "frames_observed": 6,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.7033,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 3,
+          "first_seen_s": 0.0,
+          "last_seen_s": 5.0,
+          "frames_observed": 6,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 4,
+          "first_seen_s": 0.0,
+          "last_seen_s": 5.0,
+          "frames_observed": 5,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.7738,
+            "vest": 0.3173,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 5,
+          "first_seen_s": 0.0,
+          "last_seen_s": 5.0,
+          "frames_observed": 3,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 6,
+          "first_seen_s": 2.0,
+          "last_seen_s": 4.0,
+          "frames_observed": 2,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.7292,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 7,
+          "first_seen_s": 4.0,
+          "last_seen_s": 5.0,
+          "frames_observed": 2,
+          "status": "potential_violation",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "missing",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": 0.4235,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": [
+            "Missing safety vest"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "worker_id": 7,
+          "category": "vest",
+          "label": "Missing safety vest",
+          "status": "potential_violation",
+          "confidence": 0.4235,
+          "first_seen_s": 4.0,
+          "last_seen_s": 5.0,
+          "first_frame": 100,
+          "last_frame": 125,
+          "observations": 2,
+          "evidence": "Explicit negative PPE evidence in 2 sampled frame(s); 2/2 observations in the surrounding window support it."
+        }
+      ],
+      "notes": [
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 10.35
+    },
+    {
+      "video": "5434218-hd_1920_1080_24fps.mp4",
+      "ok": true,
+      "source": {
+        "filename": "5434218-hd_1920_1080_24fps.mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": 23.976,
+        "frame_count": 167,
+        "duration_s": 6.965
+      },
+      "processing": {
+        "stride": 24,
+        "sample_fps": 0.999,
+        "output_fps": 0.999,
+        "estimated_frames": 7,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 7,
+        "corrupt_frames": 0,
+        "elapsed_s": 11.22,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "06_5434218-hd_1920_1080_24fps.mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": 0.999,
+        "frame_count": 7,
+        "size_bytes": 1684818,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 2,
+        "compliant_workers": 0,
+        "violation_workers": 0,
+        "unconfirmed_workers": 2,
+        "event_count": 0,
+        "events_by_category": {}
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 5.01,
+          "frames_observed": 6,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "present",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": 0.8285,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 2,
+          "first_seen_s": 5.01,
+          "last_seen_s": 5.01,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        }
+      ],
+      "events": [],
+      "notes": [
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 11.52
+    },
+    {
+      "video": "5434223-hd_1920_1080_24fps.mp4",
+      "ok": true,
+      "source": {
+        "filename": "5434223-hd_1920_1080_24fps.mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": 23.976,
+        "frame_count": 577,
+        "duration_s": 24.066
+      },
+      "processing": {
+        "stride": 73,
+        "sample_fps": 0.328,
+        "output_fps": 0.328,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 14.3,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "07_5434223-hd_1920_1080_24fps.mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": 0.328,
+        "frame_count": 8,
+        "size_bytes": 6093560,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 2,
+        "compliant_workers": 0,
+        "violation_workers": 0,
+        "unconfirmed_workers": 2,
+        "event_count": 0,
+        "events_by_category": {}
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 21.31,
+          "frames_observed": 8,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.7877,
+            "vest": 0.5215,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 2,
+          "first_seen_s": 0.0,
+          "last_seen_s": 15.22,
+          "frames_observed": 5,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "present",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5045,
+            "vest": 0.5681,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        }
+      ],
+      "events": [],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 14.62
+    },
+    {
+      "video": "8486681-uhd_3840_2160_30fps.mp4",
+      "ok": true,
+      "source": {
+        "filename": "8486681-uhd_3840_2160_30fps.mp4",
+        "width": 2560,
+        "height": 1440,
+        "fps": 30.0,
+        "frame_count": 289,
+        "duration_s": 9.633
+      },
+      "processing": {
+        "stride": 37,
+        "sample_fps": 0.811,
+        "output_fps": 0.811,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 14.01,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "08_8486681-uhd_3840_2160_30fps.mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": 0.811,
+        "frame_count": 8,
+        "size_bytes": 2399801,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 1,
+        "compliant_workers": 1,
+        "violation_workers": 0,
+        "unconfirmed_workers": 0,
+        "event_count": 0,
+        "events_by_category": {}
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 8.63,
+          "frames_observed": 8,
+          "status": "compliant",
+          "states": {
+            "helmet": "present",
+            "vest": "present",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.8328,
+            "vest": 0.8252,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        }
+      ],
+      "events": [],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 14.57
+    },
+    {
+      "video": "8964930-uhd_3840_2160_25fps.mp4",
+      "ok": true,
+      "source": {
+        "filename": "8964930-uhd_3840_2160_25fps.mp4",
+        "width": 3840,
+        "height": 2160,
+        "fps": 25.0,
+        "frame_count": 201,
+        "duration_s": 8.04
+      },
+      "processing": {
+        "stride": 26,
+        "sample_fps": 0.962,
+        "output_fps": 0.962,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 16.14,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "09_8964930-uhd_3840_2160_25fps.mp4",
+        "width": 1280,
+        "height": 720,
+        "fps": 0.962,
+        "frame_count": 8,
+        "size_bytes": 2024362,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 3,
+        "compliant_workers": 0,
+        "violation_workers": 0,
+        "unconfirmed_workers": 3,
+        "event_count": 0,
+        "events_by_category": {}
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 7.28,
+          "frames_observed": 8,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5852,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 2,
+          "first_seen_s": 0.0,
+          "last_seen_s": 7.28,
+          "frames_observed": 8,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5802,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 3,
+          "first_seen_s": 0.0,
+          "last_seen_s": 0.0,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5012,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        }
+      ],
+      "events": [],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 17.79
+    },
+    {
+      "video": "8965526-uhd_2160_3840_25fps.mp4",
+      "ok": true,
+      "source": {
+        "filename": "8965526-uhd_2160_3840_25fps.mp4",
+        "width": 2160,
+        "height": 3840,
+        "fps": 25.0,
+        "frame_count": 315,
+        "duration_s": 12.6
+      },
+      "processing": {
+        "stride": 40,
+        "sample_fps": 0.625,
+        "output_fps": 0.625,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 16.5,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "10_8965526-uhd_2160_3840_25fps.mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 0.625,
+        "frame_count": 8,
+        "size_bytes": 3138097,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 2,
+        "compliant_workers": 2,
+        "violation_workers": 0,
+        "unconfirmed_workers": 0,
+        "event_count": 0,
+        "events_by_category": {}
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 11.2,
+          "frames_observed": 8,
+          "status": "compliant",
+          "states": {
+            "helmet": "present",
+            "vest": "present",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.4669,
+            "vest": 0.4707,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 2,
+          "first_seen_s": 0.0,
+          "last_seen_s": 11.2,
+          "frames_observed": 8,
+          "status": "compliant",
+          "states": {
+            "helmet": "present",
+            "vest": "present",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.3635,
+            "vest": 0.5013,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        }
+      ],
+      "events": [],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 17.41
+    },
+    {
+      "video": "Recording 2026-11-18 093655.mp4",
+      "ok": true,
+      "source": {
+        "filename": "Recording 2026-11-18 093655.mp4",
+        "width": 1918,
+        "height": 998,
+        "fps": 30.0,
+        "frame_count": 505,
+        "duration_s": 16.833
+      },
+      "processing": {
+        "stride": 64,
+        "sample_fps": 0.469,
+        "output_fps": 0.469,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 12.56,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "11_Recording 2026-11-18 093655.mp4",
+        "width": 1280,
+        "height": 666,
+        "fps": 0.469,
+        "frame_count": 8,
+        "size_bytes": 4236135,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 5,
+        "compliant_workers": 0,
+        "violation_workers": 3,
+        "unconfirmed_workers": 2,
+        "event_count": 3,
+        "events_by_category": {
+          "helmet": 3
+        }
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 14.93,
+          "frames_observed": 8,
+          "status": "potential_violation",
+          "states": {
+            "helmet": "missing",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.67,
+            "vest": 0.4533,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": [
+            "Missing hard hat"
+          ]
+        },
+        {
+          "id": 2,
+          "first_seen_s": 0.0,
+          "last_seen_s": 14.93,
+          "frames_observed": 8,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.735,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 3,
+          "first_seen_s": 0.0,
+          "last_seen_s": 14.93,
+          "frames_observed": 3,
+          "status": "potential_violation",
+          "states": {
+            "helmet": "missing",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5748,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": [
+            "Missing hard hat"
+          ]
+        },
+        {
+          "id": 4,
+          "first_seen_s": 0.0,
+          "last_seen_s": 0.0,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 5,
+          "first_seen_s": 4.27,
+          "last_seen_s": 10.67,
+          "frames_observed": 4,
+          "status": "potential_violation",
+          "states": {
+            "helmet": "missing",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.6103,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": [
+            "Missing hard hat"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "worker_id": 1,
+          "category": "helmet",
+          "label": "Missing hard hat",
+          "status": "potential_violation",
+          "confidence": 0.67,
+          "first_seen_s": 0.0,
+          "last_seen_s": 14.93,
+          "first_frame": 0,
+          "last_frame": 448,
+          "observations": 8,
+          "evidence": "Explicit negative PPE evidence in 8 sampled frame(s); 8/8 observations in the surrounding window support it."
+        },
+        {
+          "worker_id": 3,
+          "category": "helmet",
+          "label": "Missing hard hat",
+          "status": "potential_violation",
+          "confidence": 0.5748,
+          "first_seen_s": 0.0,
+          "last_seen_s": 12.8,
+          "first_frame": 0,
+          "last_frame": 384,
+          "observations": 2,
+          "evidence": "Explicit negative PPE evidence in 2 sampled frame(s); 2/3 observations in the surrounding window support it."
+        },
+        {
+          "worker_id": 5,
+          "category": "helmet",
+          "label": "Missing hard hat",
+          "status": "potential_violation",
+          "confidence": 0.6103,
+          "first_seen_s": 4.27,
+          "last_seen_s": 6.4,
+          "first_frame": 128,
+          "last_frame": 192,
+          "observations": 2,
+          "evidence": "Explicit negative PPE evidence in 2 sampled frame(s); 2/3 observations in the surrounding window support it."
+        }
+      ],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 13.24
+    },
+    {
+      "video": "Recording 2026-11-18 093828.mp4",
+      "ok": true,
+      "source": {
+        "filename": "Recording 2026-11-18 093828.mp4",
+        "width": 1918,
+        "height": 946,
+        "fps": 30.0,
+        "frame_count": 270,
+        "duration_s": 9.0
+      },
+      "processing": {
+        "stride": 34,
+        "sample_fps": 0.882,
+        "output_fps": 0.882,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 11.41,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "12_Recording 2026-11-18 093828.mp4",
+        "width": 1280,
+        "height": 630,
+        "fps": 0.882,
+        "frame_count": 8,
+        "size_bytes": 2208691,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 10,
+        "compliant_workers": 0,
+        "violation_workers": 4,
+        "unconfirmed_workers": 6,
+        "event_count": 4,
+        "events_by_category": {
+          "helmet": 4
+        }
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 7.93,
+          "frames_observed": 8,
+          "status": "potential_violation",
+          "states": {
+            "helmet": "missing",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.585,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": [
+            "Missing hard hat"
+          ]
+        },
+        {
+          "id": 2,
+          "first_seen_s": 0.0,
+          "last_seen_s": 6.8,
+          "frames_observed": 7,
+          "status": "potential_violation",
+          "states": {
+            "helmet": "missing",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.3932,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": [
+            "Missing hard hat"
+          ]
+        },
+        {
+          "id": 3,
+          "first_seen_s": 0.0,
+          "last_seen_s": 7.93,
+          "frames_observed": 8,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 4,
+          "first_seen_s": 0.0,
+          "last_seen_s": 0.0,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 5,
+          "first_seen_s": 0.0,
+          "last_seen_s": 7.93,
+          "frames_observed": 6,
+          "status": "potential_violation",
+          "states": {
+            "helmet": "missing",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.68,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": [
+            "Missing hard hat"
+          ]
+        },
+        {
+          "id": 6,
+          "first_seen_s": 0.0,
+          "last_seen_s": 7.93,
+          "frames_observed": 8,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 7,
+          "first_seen_s": 0.0,
+          "last_seen_s": 6.8,
+          "frames_observed": 2,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": null,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 8,
+          "first_seen_s": 0.0,
+          "last_seen_s": 5.67,
+          "frames_observed": 4,
+          "status": "potential_violation",
+          "states": {
+            "helmet": "missing",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.5019,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": [
+            "Missing hard hat"
+          ]
+        },
+        {
+          "id": 9,
+          "first_seen_s": 5.67,
+          "last_seen_s": 7.93,
+          "frames_observed": 2,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.32,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 10,
+          "first_seen_s": 7.93,
+          "last_seen_s": 7.93,
+          "frames_observed": 1,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.3399,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        }
+      ],
+      "events": [
+        {
+          "worker_id": 8,
+          "category": "helmet",
+          "label": "Missing hard hat",
+          "status": "potential_violation",
+          "confidence": 0.5019,
+          "first_seen_s": 2.27,
+          "last_seen_s": 4.53,
+          "first_frame": 68,
+          "last_frame": 136,
+          "observations": 2,
+          "evidence": "Explicit negative PPE evidence in 2 sampled frame(s); 2/4 observations in the surrounding window support it."
+        },
+        {
+          "worker_id": 5,
+          "category": "helmet",
+          "label": "Missing hard hat",
+          "status": "potential_violation",
+          "confidence": 0.68,
+          "first_seen_s": 3.4,
+          "last_seen_s": 7.93,
+          "first_frame": 102,
+          "last_frame": 238,
+          "observations": 4,
+          "evidence": "Explicit negative PPE evidence in 4 sampled frame(s); 4/5 observations in the surrounding window support it."
+        },
+        {
+          "worker_id": 2,
+          "category": "helmet",
+          "label": "Missing hard hat",
+          "status": "potential_violation",
+          "confidence": 0.3932,
+          "first_seen_s": 4.53,
+          "last_seen_s": 6.8,
+          "first_frame": 136,
+          "last_frame": 204,
+          "observations": 3,
+          "evidence": "Explicit negative PPE evidence in 3 sampled frame(s); 3/4 observations in the surrounding window support it."
+        },
+        {
+          "worker_id": 1,
+          "category": "helmet",
+          "label": "Missing hard hat",
+          "status": "potential_violation",
+          "confidence": 0.585,
+          "first_seen_s": 5.67,
+          "last_seen_s": 6.8,
+          "first_frame": 170,
+          "last_frame": 204,
+          "observations": 2,
+          "evidence": "Explicit negative PPE evidence in 2 sampled frame(s); 2/4 observations in the surrounding window support it."
+        }
+      ],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 11.97
+    },
+    {
+      "video": "Recording 2026-11-18 093935.mp4",
+      "ok": true,
+      "source": {
+        "filename": "Recording 2026-11-18 093935.mp4",
+        "width": 1906,
+        "height": 978,
+        "fps": 30.0,
+        "frame_count": 437,
+        "duration_s": 14.567
+      },
+      "processing": {
+        "stride": 55,
+        "sample_fps": 0.545,
+        "output_fps": 0.545,
+        "estimated_frames": 8,
+        "imgsz": 640,
+        "conf": 0.25,
+        "max_output_width": 1280,
+        "processed_frames": 8,
+        "corrupt_frames": 0,
+        "elapsed_s": 12.31,
+        "codec": "avc1"
+      },
+      "annotated": {
+        "filename": "13_Recording 2026-11-18 093935.mp4",
+        "width": 1280,
+        "height": 656,
+        "fps": 0.545,
+        "frame_count": 8,
+        "size_bytes": 3602821,
+        "readable": true
+      },
+      "summary": {
+        "worker_count": 3,
+        "compliant_workers": 0,
+        "violation_workers": 1,
+        "unconfirmed_workers": 2,
+        "event_count": 1,
+        "events_by_category": {
+          "helmet": 1
+        }
+      },
+      "workers": [
+        {
+          "id": 1,
+          "first_seen_s": 0.0,
+          "last_seen_s": 12.83,
+          "frames_observed": 8,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "unconfirmed",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.2783,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 2,
+          "first_seen_s": 0.0,
+          "last_seen_s": 12.83,
+          "frames_observed": 6,
+          "status": "unconfirmed",
+          "states": {
+            "helmet": "present",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.8103,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": []
+        },
+        {
+          "id": 3,
+          "first_seen_s": 7.33,
+          "last_seen_s": 11.0,
+          "frames_observed": 3,
+          "status": "potential_violation",
+          "states": {
+            "helmet": "missing",
+            "vest": "unconfirmed",
+            "gloves": "unconfirmed",
+            "goggles": "unconfirmed",
+            "mask": "unconfirmed"
+          },
+          "confidence": {
+            "helmet": 0.7045,
+            "vest": null,
+            "gloves": null,
+            "goggles": null,
+            "mask": null
+          },
+          "events": [
+            "Missing hard hat"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "worker_id": 3,
+          "category": "helmet",
+          "label": "Missing hard hat",
+          "status": "potential_violation",
+          "confidence": 0.7045,
+          "first_seen_s": 7.33,
+          "last_seen_s": 9.17,
+          "first_frame": 220,
+          "last_frame": 275,
+          "observations": 2,
+          "evidence": "Explicit negative PPE evidence in 2 sampled frame(s); 2/3 observations in the surrounding window support it."
+        }
+      ],
+      "notes": [
+        "Stopped after the configured limit of 8 sampled frames.",
+        "Gloves, goggles, and masks are assessed only when the checkpoint emits matching boxes; otherwise they stay Unconfirmed."
+      ],
+      "wall_elapsed_s": 12.9
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+# --- Python / tooling -----------------------------------------------------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Secrets --------------------------------------------------------------
+# Never commit real environment files or private keys.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Runtime user data ----------------------------------------------------
+# SQLite database, uploads, annotated images, video outputs and thumbnails
+# are generated at runtime and may contain user data. They stay on the local
+# machine / Render persistent disk, never in Git.
+data/
+static/incoming/
+static/rendered/
+vector_db/
+knowledge_base/documents/
+
+# --- Logs and temporary files --------------------------------------------
+*.log
+# Validation evidence logs are part of the project record.
+!reports/*.log
+!evaluation/*.log
+*.tmp
+*.bak
+*.orig
+~$*
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# --- Training-only artifacts ---------------------------------------------
+# Preserved locally for the project record; not required to run the app and
+# too large/noisy for the application repository.
+dataset/
+runs/
+annotation_audit/
+diagnostics/
+project_structure.txt
+
+# --- IDE ----------------------------------------------------------------
+.idea/
+.vscode/
+*.swp

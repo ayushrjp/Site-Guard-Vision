@@ -1,0 +1,58 @@
+{
+  "model_sha256": "2b33d4d016f9751c5a25f4a72ce050e0a7e4e140b11c1669978d7154003a4f61",
+  "baseline_model_sha256": "2b33d4d016f9751c5a25f4a72ce050e0a7e4e140b11c1669978d7154003a4f61",
+  "split": "test",
+  "images": 90,
+  "annotations": 623,
+  "annotations_by_class": {
+    "Helmet": 195,
+    "No Helmet": 24,
+    "No Vest": 61,
+    "Person": 214,
+    "Safety Vest": 129
+  },
+  "ppe_annotations": 409,
+  "image_sizes": [
+    640,
+    960
+  ],
+  "confidence_threshold": 0.25,
+  "inference_candidate_floor": 0.001,
+  "nms_iou": 0.7,
+  "class_mapping": {
+    "0": 3,
+    "1": 8,
+    "2": 10,
+    "3": 11,
+    "4": 13
+  },
+  "iou_thresholds_ap": [
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95
+  ],
+  "matching": "same custom class-aware greedy one-to-one matching methodology as evaluate_dataset.py",
+  "matching_iou_pr_f1": 0.5,
+  "metric_aggregation": "PPE macro excluding the checkpoint Person class",
+  "uncertainty": {
+    "method": "paired image-cluster percentile bootstrap",
+    "replicates": 2000,
+    "seed": 20261116,
+    "paired_resampling": true
+  },
+  "comparison_delta_640_minus_960": {
+    "precision": 0.04536297743593687,
+    "recall": 0.16909818958522738,
+    "f1": 0.13756176644348705,
+    "mAP50": 0.09990201137856702,
+    "mAP50_95": 0.11163083485193659
+  },
+  "prior_use_disclosure": "Test split already had the 960px baseline evaluation and diagnostic review; 640px resolution was selected using validation data only. The fixed 640-vs-960 comparison was run on all test images after explicit authorization; no test-set tuning was performed."
+}

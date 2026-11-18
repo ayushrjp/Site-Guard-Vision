@@ -1,0 +1,7 @@
+image,worker_id,class,confidence,box_xyxy,production_threshold,association_result,ioa,center_inside,center_distance_px,failure_category,evidence
+ppe_0004_jpg.rf.99a751a65b56257ea7c44b4de9cae4bb.jpg,P1,Safety Vest,0.143993,"[298.86,223.16,385.41,322.93]",0.25,"Excluded before production association; diagnostic pass would assign to P1",0.9925,true,47.4,confidence_filter,"Diagnostic candidate overlaps P1 torso [299.51,215.12,453.39,396.29]; score below unchanged production confidence cutoff."
+ppe_0004_jpg.rf.99a751a65b56257ea7c44b4de9cae4bb.jpg,P2,Safety Vest,0.3715,"[27.6,378.3,236.9,630.4]",0.25,"Assigned to P2",0.7429,true,,"correct_association","Stored analysis #5 production detection and association."
+ppe_0004_jpg.rf.99a751a65b56257ea7c44b4de9cae4bb.jpg,P3,Safety Vest,0.2709,"[394.9,484.6,639.3,640.0]",0.25,"Assigned to P3",0.6120,true,,"correct_association","Stored analysis #5 production detection and association."
+ppe_0004_jpg.rf.99a751a65b56257ea7c44b4de9cae4bb.jpg,P1,Hardhat,0.6516,"[312.6,163.7,363.4,206.4]",0.25,"Assigned to P1",0.8244,true,,"correct_association","Stored analysis #5 production detection and association."
+ppe_0004_jpg.rf.99a751a65b56257ea7c44b4de9cae4bb.jpg,P2,Hardhat,0.6697,"[56.5,209.7,224.2,329.2]",0.25,"Assigned to P2",0.8092,true,,"correct_association","Stored analysis #5 production detection and association."
+ppe_0004_jpg.rf.99a751a65b56257ea7c44b4de9cae4bb.jpg,P3,Hardhat,0.5513,"[446.5,325.6,623.7,481.1]",0.25,"Assigned to P3",0.7525,true,,"correct_association","Stored analysis #5 production detection and association."

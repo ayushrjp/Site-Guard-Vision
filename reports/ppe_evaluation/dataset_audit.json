@@ -1,0 +1,63 @@
+{
+  "dataset_yaml": "train: train/images\nval: valid/images\ntest: test/images\n\nnc: 5\nnames: ['helmet', 'no-helmet', 'no-vest', 'person', 'vest']\n\nroboflow:\n  workspace: ppe-sy76h\n  project: construction-safety-gsnvb-mu4sy\n  version: 1\n  license: CC BY 4.0",
+  "dataset_yaml_sha256": "87e05cde1e3015b8f1b64501dbffffa7ed1d5e4f068e1ce84e78288107e48e3b",
+  "splits": {
+    "train": {
+      "images": 997,
+      "label_files": 997,
+      "objects": 6386,
+      "class_counts": {
+        "0": 2116,
+        "1": 94,
+        "2": 741,
+        "3": 2362,
+        "4": 1073
+      },
+      "missing_labels": [],
+      "orphan_labels": [],
+      "malformed_or_invalid": [],
+      "corrupt_images": []
+    },
+    "valid": {
+      "images": 119,
+      "label_files": 119,
+      "objects": 715,
+      "class_counts": {
+        "0": 232,
+        "1": 11,
+        "2": 90,
+        "3": 241,
+        "4": 141
+      },
+      "missing_labels": [],
+      "orphan_labels": [],
+      "malformed_or_invalid": [],
+      "corrupt_images": []
+    },
+    "test": {
+      "images": 90,
+      "label_files": 90,
+      "objects": 623,
+      "class_counts": {
+        "0": 195,
+        "1": 24,
+        "2": 61,
+        "3": 214,
+        "4": 129
+      },
+      "missing_labels": [],
+      "orphan_labels": [],
+      "malformed_or_invalid": [],
+      "corrupt_images": []
+    }
+  },
+  "class_names": {
+    "0": "Helmet",
+    "1": "No Helmet",
+    "2": "No Vest",
+    "3": "Person",
+    "4": "Safety Vest"
+  },
+  "annotation_format": "YOLO normalized xywh; one class + four coordinates per non-empty row",
+  "evaluation_split": "test"
+}

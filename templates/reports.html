@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Reports — SiteGuardVision{% endblock %}
+{% block page_label %}Reports{% endblock %}
+{% block topbar_eyebrow %}Stored image analysis history{% endblock %}
+{% block content %}
+<header class="page-head"><div><p class="eyebrow">Operational history</p><h2 class="page-title">Analysis Reports</h2><p class="page-subtitle">Stored results from completed image analyses. No prior records are fabricated or imported.</p></div><div class="page-actions"><a class="btn btn-soft" href="{{ url_for('reports_export') }}">{{ icon('download') }} Export CSV</a><a class="btn btn-primary" href="{{ url_for('home') }}#upload">{{ icon('plus') }} New analysis</a></div></header>
+<section class="kpi-grid report-kpis" aria-label="Stored analysis totals">
+  <article class="kpi-card kpi-purple"><span class="kpi-icon">{{ icon('image') }}</span><div><span class="kpi-label">Images analyzed</span><strong class="kpi-value">{{ stats.total }}</strong></div></article>
+  <article class="kpi-card kpi-blue"><span class="kpi-icon">{{ icon('workers') }}</span><div><span class="kpi-label">Workers detected</span><strong class="kpi-value">{{ stats.workers }}</strong></div></article>
+  <article class="kpi-card kpi-red"><span class="kpi-icon">{{ icon('alert') }}</span><div><span class="kpi-label">Potential violations</span><strong class="kpi-value">{{ stats.violations }}</strong></div></article>
+  <article class="kpi-card kpi-yellow"><span class="kpi-icon">{{ icon('info') }}</span><div><span class="kpi-label">Unable to assess</span><strong class="kpi-value">{{ stats.insufficient }}</strong></div></article>
+  <article class="kpi-card kpi-green"><span class="kpi-icon">{{ icon('clock') }}</span><div><span class="kpi-label">Mean inference time</span><strong class="kpi-value">{{ '%.0f' % stats.avg_inference_ms }}<small>ms</small></strong></div></article>
+</section>
+<section class="card report-history">
+  <div class="card-head"><div><span class="card-kicker">{{ icon('reports') }} SQLite analysis history</span><h3 class="card-title">Recent analyses</h3></div><span class="chip chip-muted">{{ analyses|length }} shown</span></div>
+  {% if analyses %}
+  <div class="table-scroll"><table class="table report-table"><thead><tr><th>Date / time</th><th>Image</th><th>Assessment</th><th>Workers</th><th>Hard hats</th><th>Vests</th><th>Inference</th><th></th></tr></thead><tbody>
+    {% for item in analyses %}<tr>
+      <td>{{ item.created_at|datetime_short }}</td>
+      <td><span class="report-image-name">{{ item.source_label or 'Analysis #' ~ item.id }}</span><small>{{ item.image_width }} × {{ item.image_height }} px</small></td>
+      <td><span class="badge {{ 'badge-alert' if item.assessment_status == 'potential_violation' else 'badge-ok' if item.assessment_status == 'no_violation_detected' else 'badge-unknown' }}">{{ 'Potential Violation' if item.assessment_status == 'potential_violation' else 'No potential violations' if item.assessment_status == 'no_violation_detected' else 'Unable to assess' }}</span></td>
+      <td>{{ item.person_count }}</td><td>{{ item.hardhat_count }} <small class="text-danger">−{{ item.no_hardhat_count }}</small></td><td>{{ item.vest_count }} <small class="text-danger">−{{ item.no_vest_count }}</small></td><td>{{ '%.0f' % (item.inference_ms or 0) }} ms</td>
+      <td><a class="icon-btn" href="{{ url_for('analysis_detail', analysis_id=item.id) }}" aria-label="Open analysis {{ item.id }}" title="Open analysis">{{ icon('external') }}</a></td>
+    </tr>{% endfor %}
+  </tbody></table></div>
+  {% else %}
+  <div class="empty-state empty-large">{{ icon('reports') }}<h3>No analysis history yet</h3><p>Successful image analyses will be stored here from now on. This database starts empty; earlier analyses were not persisted.</p><a class="btn btn-primary" href="{{ url_for('home') }}#upload">{{ icon('upload') }} Analyze an image</a></div>
+  {% endif %}
+</section>
+<p class="decision-note">{{ icon('info') }} Reports reflect successful analyses stored in the local SQLite database. Failed requests are not included; annotated images are retained with the history.</p>
+{% endblock %}
